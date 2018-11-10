@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- My styles CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <title>Página principal</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="blue lighten-1">
+            <div class="nav-wrapper">
+                <a href="./index.html" class="brand-logo position-logo">
+                    <p style="font-size:20px; margin: 0px; padding: 0px;"><span class="indigo-text center">Tic</span><span
+                            class="white-text">oRi</span><span class="red-text">des</span>
+                        <img src="https://cdn.pixabay.com/photo/2015/08/16/06/26/costa-rica-890669_960_720.png" alt="https://cdn.pixabay.com/photo/2015/08/16/06/26/costa-rica-890669_960_720.png"
+                            width="25px">
+                    </p>
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="./login.html">Iniciar Session</a></li>
+                    <li><a href="./signin.html">Crear cuenta</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="./login.html">Iniciar Session</a></li>
+            <li><a href="./signin.html">Crear cuenta</a></li>
+        </ul>
+        <div class="content">
+            <div class="transparend-div">
+                <div class="parallax-container">
+                    <div class="welcome center">
+                        <h2 class="white-text h2">Bienvenidos a TicoRides</h2>
+                        <p class="white-text p">
+                            TicoRides es una aplicación nacional que proporciona a los usuarios información sobre
+                            los
+                            candidatos que ofrecen el servicio de transporte a usuarios que se dirigen hacia el
+                            mismo
+                            destino.
+                            A través del software de aplicación web,​ que conecta los pasajeros
+                            con los conductores de vehículos registrados en su servicio, los cuales ofrecen un
+                            servicio
+                            de
+                            transporte a particulares.
+                        </p>
+                        <a href="#section-1" id="link" class="btn btn-large pulse blue lighten-1">Preciona aquí para
+                            ver rides</a>
+                    </div>
+                    <div class="parallax">
+                        <img src="https://img.motoryracing.com/noticias/portada/22000/22857-n.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="section white" id="section-1">
+                <div class="row container">
+                    <h2 class="header">Buscar Rides</h2>
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">drive_eta</i>
+                                <input id="salida" type="text" class="validate">
+                                <label for="salida">Lugar de Salida</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">pin_drop</i>
+                                <input id="destino" type="text" class="validate">
+                                <label for="destino">Lugar de Destino</label>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="striped container">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Inicio</th>
+                                <th>Destino</th>
+                                <th>Abrir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alvin</td>
+                                <td>Eclair</td>
+                                <td>$0.87</td>
+                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>Alan</td>
+                                <td>Jellybean</td>
+                                <td>$3.76</td>
+                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>Jonathan</td>
+                                <td>Lollipop</td>
+                                <td>$7.00</td>
+                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="transparend-div center">
+                <div class="parallax-container">
+                    <div class="section-2">
+                        <h5 class="white-text">Ven ofrece rides o consigue un transporte.</h5>
+                        <a href="./signin.html" class="btn waves-effect blue btn-large"><i class="material-icons left">addperson</i>Crear
+                            cuenta</a>
+                        <a href="./login.html" class="btn waves-effect blue btn-large"><i class="material-icons left">person</i>Iniciar
+                            session</a>
+                    </div>
+                    <div class="parallax"><img src="http://www.elfinanciero.com.mx/uploads/2018/04/25/8643c8e2101524706311_standard_desktop_medium_retina.png"></div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">TicoRides</h5>
+                        <p class="grey-text text-lighten-4">Con esta aplicación podras encontrar personas que viajan a
+                            tu destino, además podras saber información sobre el conductor y el auto, todo en una sola
+                            app.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <div class="right">
+                            <h2 style="font-size:20px;"><span class="indigo-text center">Tic</span><span class="white-text">oRi</span><span
+                                    class="red-text">des</span></h2>
+                            <img src="https://cdn.pixabay.com/photo/2015/08/16/06/26/costa-rica-890669_960_720.png" alt="https://cdn.pixabay.com/photo/2015/08/16/06/26/costa-rica-890669_960_720.png"
+                                width="50px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright center">
+                <div class="container">
+                    © 2014 Copyright TicoRides
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Compiled and minified JavaScript jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- My JavaScript -->
+    <script src="./js/app.js"></script>
+    <script>
+        activeScriptMaterialize();
+        scroll();
+    </script>
+</body>
+
+</html>
