@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- My styles CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <title>Rides</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="blue lighten-1">
+            <div class="nav-wrapper">
+                <a href="./index.html" class="brand-logo position-logo">
+                    <p style="font-size:20px; margin: 0px; padding: 0px;"><span class="indigo-text center">Tic</span><span
+                            class="white-text">oRi</span><span class="red-text">des</span>
+                        <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png" width="25px">
+                    </p>
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                    <li><a href="./rides.html">Rides</a></li>
+                    <li><a href="./setting.html">Configuración</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="./dashboard.html">Dashboard</a></li>
+            <li><a href="./rides.html">Rides</a></li>
+            <li><a href="./setting.html">Configuración</a></li>
+        </ul>
+        <div class="section-signin">
+            <div class="container">
+                <h2 class="header center">Publicar mi recorrido</h2>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="ride-name" name="ride-name" type="text" class="validate">
+                                <label for="ride-name">Nombre del Ride</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="start" id="start" type="text" class="validate">
+                                <label for="start">Salida</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="end" id="end" type="text" class="validate">
+                                <label for="end">Destino</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea name="description" id="description" type="text" class="validate" rows="100" required></textarea>
+                                <label for="description">Descripción</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4 class="header">Horarios</h4>
+                        <br>
+                        <div class="col s6">
+                            <div class="row">
+                                <div class="input-field col s10">
+                                    <input placeholder="Nombre del Ride" id="hour-start" name="hour-start" type="time" class="validate">
+                                    <label for="hour-start">Hora de salida</label>
+                                </div>
+                                <div class="input-field col s10">
+                                    <input name="hour-end" id="hour-end" type="time" class="validate">
+                                    <label for="hour-end">Hora de llegada</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <h6 class="">Seleccione los días</h6>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="monday" id="monday" />
+                                <span>Lunes</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="tuesday" id="tuesday"/>
+                                <span>Martes</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="wednesday" id="wednesday"/>
+                                <span>Miercoles</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="thursday" id="thursday"/>
+                                <span>Jueves</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="friday" id="friday"/>
+                                <span>Viernes</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="saturday" id="saturday"/>
+                                <span>Sábado</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" name="sunday" id="sunday"/>
+                                <span>Domingo</span>
+                            </label>
+                            </p>
+                        </div>
+                        <a class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</a>                        
+                        <a class="btn waves-effect green btn-long"><i class="material-icons left">save</i>Guardar</a>
+                    </form>
+                </div>            
+            </div>
+        </div>
+        <footer class="page-footer blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">TicoRides</h5>
+                        <p class="grey-text text-lighten-4">Con esta aplicación podras encontrar personas que viajan a
+                            tu destino, además podras saber información sobre el conductor y el auto, todo en una sola
+                            app.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <div class="right">
+                            <h2 style="font-size:20px;"><span class="indigo-text center">Tic</span><span class="white-text">oRi</span><span
+                                    class="red-text">des</span></h2>
+                            <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png"
+                                width="50px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright center">
+                <div class="container">
+                    © 2018 Copyright TicoRides
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- My JavaScript -->
+    <script src="./js/app.js"></script>
+    <script>
+        activeScriptMaterialize();
+    </script>
+</body>
+
+</html>

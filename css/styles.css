@@ -49,6 +49,10 @@
     border-radius: 10px;
 }
 
+textarea {
+    height: 100px;
+}
+
 @media screen and (max-width: 726px) {
     .welcome {
         margin: 50px;
