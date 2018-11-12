@@ -16,7 +16,7 @@
     <!-- My styles CSS -->
     <link rel="stylesheet" href="./css/styles.css">
 
-    <title>Rides</title>
+    <title>Setting</title>
 </head>
 
 <body>
@@ -44,88 +44,24 @@
         </ul>
         <div class="section-signin">
             <div class="container">
-                <h2 class="header center">Publicar mi recorrido</h2>
+                <h2 class="header center">Configuraciónes</h2>
                 <div class="row">
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="ride-name" name="ride-name" type="text" class="validate" required>
-                                <label for="ride-name">Nombre del Ride</label>
+                                <input id="full-name" name="full-name" type="text" class="validate" required>
+                                <label for="full-name">Nombre Completo</label>
                             </div>
-                            <div class="input-field col s6">
-                                <input name="start" id="start" type="text" class="validate" required>
-                                <label for="start">Salida</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input name="end" id="end" type="text" class="validate" required>
-                                <label for="end">Destino</label>
+                            <div class="input-field col s12">
+                                <input name="speed" id="speed" type="number" class="validate" required>
+                                <label for="start">Velocidad promedio</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea name="description" id="description" type="text" class="validate" rows="100" required></textarea>
-                                <label for="description">Descripción</label>
+                                <textarea name="about-me" id="about-me" type="text" class="validate"required></textarea>
+                                <label for="description">Sobre mí</label>
                             </div>
-                        </div>
-                        <hr>
-                        <h4 class="header">Horarios</h4>
-                        <br>
-                        <div class="col s6">
-                            <div class="row">
-                                <div class="input-field col s10">
-                                    <input placeholder="Nombre del Ride" id="hour-start" name="hour-start" type="time" class="validate" required>
-                                    <label for="hour-start">Hora de salida</label>
-                                </div>
-                                <div class="input-field col s10">
-                                    <input name="hour-end" id="hour-end" type="time" class="validate" required>
-                                    <label for="hour-end">Hora de llegada</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s6">
-                            <h6 class="">Seleccione los días</h6>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="monday" id="monday" />
-                                <span>Lunes</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="tuesday" id="tuesday"/>
-                                <span>Martes</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="wednesday" id="wednesday"/>
-                                <span>Miercoles</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="thursday" id="thursday"/>
-                                <span>Jueves</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="friday" id="friday"/>
-                                <span>Viernes</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="saturday" id="saturday"/>
-                                <span>Sábado</span>
-                            </label>
-                            </p>
-                            <p>
-                            <label>
-                                <input type="checkbox" name="sunday" id="sunday"/>
-                                <span>Domingo</span>
-                            </label>
-                            </p>
                         </div>
                         <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>                        
                         <a class="btn waves-effect green btn-long"><i class="material-icons left">save</i>Guardar</a>
