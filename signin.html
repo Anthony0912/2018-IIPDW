@@ -54,40 +54,49 @@
 
                             <div class="row">
                                 <div class='input-field col s12'>
-                                    <input class="validate" type="text" name="name" id="name" required />
+                                    <input class="validate" type="text" name="name" id="name" />
                                     <label for="name">Nombre</label>
+                                    <div class="green-text left" id="success-name"></div>
+                                    <div class="red-text left" id="error-name"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input class="validate" type="text" name="last-name" id="last-name" required />
-                                    <label for="last-name">Apellido</label>
+                                    <input class="validate" type="text" name="lastname" id="lastname" />
+                                    <label for="lastname">Apellido</label>
+                                    <div class="green-text left" id="success-lastname"></div>
+                                    <div class="red-text left" id="error-lastname"></div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input class="validate" type="tel" name="phone" id="phone" required />
+                                    <input class="validate" type="number" name="phone" id="phone" />
                                     <label for="phone">Telefono</label>
+                                    <div class="green-text left" id="success-phone"></div>
+                                    <div class="red-text left" id="error-phone"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input class="validate" type="text" name="username" id="username" required />
+                                    <input class="validate" type="text" name="username" id="username" />
                                     <label for="username">Nombre de usuario</label>
+                                    <div class="green-text left" id="success-username"></div>
+                                    <div class="red-text left" id="error-username"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input class="validate" type="password" name="passwd" id="passwd" required />
+                                    <input class="validate" type="password" name="passwd" id="passwd" />
                                     <label for="passwd">Contraseña</label>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class='input-field col s12'>
-                                    <input class='validate' type='password' name='passwd-repeat' id='passwd-repeat'
-                                        required />
+                                    <input class='validate' type='password' name='passwd-repeat' id='passwd-repeat' />
                                     <label for='passwd-repeat'>Repetir Contraseña</label>
+                                    <div class="green-text left" id="success-passwd"></div>
+                                    <div class="red-text left" id="error-repasswd"></div>
                                 </div>
                                 <label style='float: right;'>
                                     <p>¿ya tienes cuenta?, inicia session <a class='blue-text' href='./login.html'><b>aquí</b></a>.</p>
@@ -97,7 +106,7 @@
                             <br />
                             <center>
                                 <div class='row'>
-                                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue'>Registrarme</button>
+                                    <button type='button' name='btn_register' id="btn_register" class='col s12 btn btn-large waves-effect blue'>Registrarme</button>
                                 </div>
                             </center>
                         </form>
@@ -138,10 +147,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
+    <script src="./js/eventapp.js"></script>
+    <script src="./js/localstorage.js"></script>
     <script src="./js/app.js"></script>
-    <script>
-        activeScriptMaterialize();
-    </script>
 </body>
 
 </html>
