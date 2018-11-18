@@ -1,13 +1,4 @@
 /**
- *  Funcion que inicializa javascript materialize 
- * */
-function activeScriptMaterialize() {
-    document.addEventListener('DOMContentLoaded', function () {
-        M.AutoInit();
-    });
-}
-
-/**
  * Funcion que ayuda que cuando el usuario percione el boton
  * donde esta la bienvenida, lo redirecione facilmente al apartado
  * de los rides
@@ -40,4 +31,3 @@ function scroll() {
 }
 
 scroll();
-activeScriptMaterialize();
