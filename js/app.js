@@ -1,21 +1,27 @@
 /**
+ * constantes para extraer los datos al localstroge
+ */
+const persons = getFromLocalStorage('persons');
+
+/**
  * funcion que obtiene los datos del usuario y los pasa a 
  * un objecto
  */
 function objectUser() {
-    var name = document.getElementById('name').value.trim();
-    var lastname = document.getElementById('lastname').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var username = document.getElementById('username').value.toLowerCase().trim();
-    var passwd = document.getElementById('passwd').value.trim();
-
-    var person = {
+    let name = document.getElementById('name').value.trim();
+    let lastname = document.getElementById('lastname').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    let username = document.getElementById('username').value.toLowerCase().trim();
+    let passwd = document.getElementById('passwd').value.trim();
+    
+    let person = {
         name,
         lastname,
         phone,
         username,
         passwd
     }
+    
     return person;
 }
 
@@ -24,14 +30,14 @@ function objectUser() {
  * llenar
  */
 function alertTheUser() {
-    var person = objectUser();
-    var repasswd = document.getElementById('passwd-repeat').value.trim();
-    var alertName = document.getElementById('alert-name');
-    var alertLastName = document.getElementById('alert-lastname');
-    var alertPhone = document.getElementById('alert-phone');
-    var alertUserName = document.getElementById('alert-username');
-    var alertPasswd = document.getElementById('alert-passwd');
-    var alertRePasswd = document.getElementById('alert-repasswd');
+    const person = objectUser();
+    let repasswd = document.getElementById('passwd-repeat').value.trim();
+    let alertName = document.getElementById('alert-name');
+    let alertLastName = document.getElementById('alert-lastname');
+    let alertPhone = document.getElementById('alert-phone');
+    let alertUserName = document.getElementById('alert-username');
+    let alertPasswd = document.getElementById('alert-passwd');
+    let alertRePasswd = document.getElementById('alert-repasswd');
 
 
     if (person.name.length > 0) {
@@ -53,11 +59,11 @@ function alertTheUser() {
     }
 
     if (person.username.length > 0) {
-        // if (thereIsAUserName(person.username, 'person')) {
-        //     setAlertError(alertUserName, 'Este nombre de usuario ya existe');
-        // } else {
+        if (thereIsAUserName(person.username, 'persons')) {
+            setAlertError(alertUserName, 'Este nombre de usuario ya existe');
+        } else {
             setAlertSuccess(alertUserName);
-        //}
+        }
     } else {
         setAlertError(alertUserName);
     }
@@ -83,17 +89,23 @@ function alertTheUser() {
     }
 }
 
+/**
+ * funcion en cargada en la validacion del registro del usuario, esta función 
+ * se dispara cuando el boton del registro es pulsado
+ */
 function validationRegisterUser() {
-    var person = objectUser();
-    var repasswd = document.getElementById('passwd-repeat').value.trim();
+    const person = objectUser();
+    let repasswd = document.getElementById('passwd-repeat').value.trim();
     if (person.name.length > 0 && person.lastname.length > 0 && person.phone.length > 7
         && person.username.length > 0 && person.passwd > 7 && repasswd.length > 7
-        && repasswd === person.passwd) {
-        //thereIsAUserName(person.username, 'person')
-        sendLocalStorage('person', person);
-        location.href = './dashboard.html'
+        && repasswd === person.passwd && !thereIsAUserName(person.username, 'persons')) {
+            if (addItemsToTheArray(person, 'persons')) {
+                location.href = './dashboard.html';
+            }else{
+                console.log('faltan datos por completar dentro');
+            }
     } else {
-        console.log('falta datos por completar');
+        console.log('falta datos por completar afuera');
     }
 }
 
@@ -107,33 +119,15 @@ function validationOnlyNumber() {
 }
 
 /**
- * funcion en caragada ingresar los datos al localstrage verificando primero si existe la llave del localstorage
- * @param {*} nameObject nombre de la llave que se usara para meter los nuevos datos al localstorage
- * @param {*} keyNew nuevos datos que se agregaran al localstorage
- */
-function sendLocalStorage(nameObject, keyNew) {
-    var temp;
-    if (getFromLocalStorage(nameObject) === null) {
-        temp = [keyNew];
-    } else {
-        temp = getFromLocalStorage(nameObject);
-        temp.push(keyNew);
-    }
-    if (saveToLocalStorage(nameObject, temp)) {
-        console.log('Se ha registrado con exito');
-    }
-}
-
-/**
  * funcion que se encarga de validar si el nombre de usuario existe
  * @param {*} username nombre de usuario
  * @param {*} key nombre del llave del localstorage
  */
-function thereIsAUserName(username, key) {
-    var person = getFromLocalStorage(key);
-    person.forEach(element => {
-        return element.username === username;
-    });
+function thereIsAUserName(username) {
+    if (persons) {
+        return persons.find(person => person.username === username);
+    }
+    return false;
 }
 
 /**
