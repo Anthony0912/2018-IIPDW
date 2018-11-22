@@ -13,7 +13,7 @@ function objectUser() {
     let phone = document.getElementById('phone').value.trim();
     let username = document.getElementById('username').value.toLowerCase().trim();
     let passwd = document.getElementById('passwd').value.trim();
-    
+
     let person = {
         name,
         lastname,
@@ -21,8 +21,73 @@ function objectUser() {
         username,
         passwd
     }
-    
+
     return person;
+}
+
+/**
+ * funcion encargada de extrar la nombre de usuario y la contraseña de los campos del formulario
+ */
+function objectLogin() {
+    let username = document.getElementById('user').value.trim();
+    let passwd = document.getElementById('password').value.trim();
+
+    let person = {
+        username,
+        passwd
+    }
+
+    return person;
+}
+
+/**
+ * funcion que se encarga de alertar al usuario sobre sobre los campos que faltan por
+ * llenar
+ */
+function alertLogin() {
+    let person = objectLogin();
+    let alertUserName = document.getElementById('alert-username');
+    let alertPasswd = document.getElementById('alert-passwd');
+
+    if (!person.username.length > 0) {
+        setAlertError(alertUserName);
+    }else{
+        setAlertError(alertUserName, null);
+
+    }
+    if (!person.passwd.length > 0) {
+        setAlertError(alertPasswd);
+    }else{ 
+        setAlertError(alertPasswd, null);
+    }
+}
+
+/**
+ * funcion que valida el login al hacer el evento del boton
+ */
+function validationLogin() {
+    const person = objectLogin();
+    let alertPasswd = document.getElementById('alert-passwd');
+    if (person.username.length > 0 && person.passwd.length > 0) {
+        if (login(person)) {
+            if (saveToSessionStorage('person', person)) {
+                location.href = './dashboard.html';
+            }
+        }else {
+            setAlertError(alertPasswd, 'El usuario o la contraseña son invalidos.');
+        }
+    }
+}
+
+/**
+ * funcion que obtiene si el usuario y la contraseña existen en localstorage
+ * @param {*} object objecto de la persona que se esta registrando en login
+ */
+function login(object) {
+    if (persons) {
+        return persons.find(person => object.username === person.username && object.passwd === person.passwd);
+    }
+    return false;
 }
 
 /**
@@ -89,6 +154,7 @@ function alertTheUser() {
     }
 }
 
+
 /**
  * funcion en cargada en la validacion del registro del usuario, esta función 
  * se dispara cuando el boton del registro es pulsado
@@ -99,13 +165,9 @@ function validationRegisterUser() {
     if (person.name.length > 0 && person.lastname.length > 0 && person.phone.length > 7
         && person.username.length > 0 && person.passwd > 7 && repasswd.length > 7
         && repasswd === person.passwd && !thereIsAUserName(person.username, 'persons')) {
-            if (addItemsToTheArray(person, 'persons')) {
-                location.href = './dashboard.html';
-            }else{
-                console.log('faltan datos por completar dentro');
-            }
-    } else {
-        console.log('falta datos por completar afuera');
+        if (addItemsToTheArray(person, 'persons') && saveToSessionStorage('person', person)) {
+            location.href = './dashboard.html';
+        }
     }
 }
 
@@ -149,29 +211,61 @@ function setAlertError(alert, messager = 'Debes llenar este campo.') {
     alert.setAttribute('style', 'color:red;');
 }
 
+/**
+ * funcion en cargada que en el input tipo text se pueda solo se pueda precionar números
+ */
 function bindEventsKeyPressInputText() {
-    document.getElementById('phone').addEventListener('keypress', validationOnlyNumber);
+    jQuery('#phone').bind('keypress', (element) => {
+        validationOnlyNumber
+    });
 }
 
 /**
  * funcion de dispara el eventos de keyup a los campos de texto 
  */
 function bindEventsKeyUpInputText() {
-    document.getElementById('name').addEventListener('keyup', alertTheUser);
-    document.getElementById('lastname').addEventListener('keyup', alertTheUser);
-    document.getElementById('phone').addEventListener('keyup', alertTheUser);
-    document.getElementById('username').addEventListener('keyup', alertTheUser);
-    document.getElementById('passwd').addEventListener('keyup', alertTheUser);
-    document.getElementById('passwd-repeat').addEventListener('keyup', alertTheUser);
+    jQuery('#name').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#lastname').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#phone').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#username').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#passwd').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#passwd-repeat').bind('keyup', (element) => {
+        alertTheUser();
+    });
+    jQuery('#user').bind('keyup', (element) => {
+        alertLogin();
+    });
+    jQuery('#password').bind('keyup', (element) => {
+        alertLogin();
+    });
 }
 
 /**
  * funcion que dispara los eventos de los botones
  */
 function bindEventsButton() {
-    document.getElementById('btn_register').addEventListener('click', validationRegisterUser);
+    jQuery('#btn_register').bind('click', (element) => {
+        validationRegisterUser();
+    });
+    jQuery('#btn_login').bind('click', (element) => {
+        validationLogin();
+    });
 }
 
+
+/**
+ * llamada de los metodos que contienen los eventos
+ */
 bindEventsButton();
 bindEventsKeyUpInputText();
 bindEventsKeyPressInputText();
