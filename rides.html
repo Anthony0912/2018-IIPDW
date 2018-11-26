@@ -21,50 +21,70 @@
 
 <body>
     <div class="container-fluid">
-        <nav class="blue lighten-1">
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!" id="close-session">Cerrar session</a></li>
+        </ul>
+        <nav class="black">
             <div class="nav-wrapper">
-                <a href="./index.html" class="brand-logo position-logo">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="./dashboard.html" class="brand-logo position-logo">
                     <p style="font-size:20px; margin: 0px; padding: 0px;"><span class="indigo-text center">Tic</span><span
                             class="white-text">oRi</span><span class="red-text">des</span>
                         <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png" width="25px">
                     </p>
                 </a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="./dashboard.html">Dashboard</a></li>
                     <li><a href="./rides.html">Rides</a></li>
                     <li><a href="./setting.html">Configuración</a></li>
+                    <li><a class="dropdown-trigger" href="#!" id="name-nav-out" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
-            </div>
         </nav>
-        <ul class="sidenav" id="mobile-demo">
+
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="https://andro4all.com/files/2016/06/fondoportada.jpg">
+                    </div>
+                    <a href="#"><img class="circle" src="https://image.flaticon.com/icons/png/512/149/149071.png"></a>
+                    <a href="#"><span class="white-text" id="name-nav"></span></a>
+                    <a href="#"><span class="white-text" id="username-nav"></span></a>
+                </div>
+            </li>
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li><a href="./rides.html">Rides</a></li>
             <li><a href="./setting.html">Configuración</a></li>
+            <li><a href="#" id="close-session">Cerrar session</a></li>
         </ul>
         <div class="section-signin">
             <div class="container">
                 <h2 class="header center">Publicar mi recorrido</h2>
                 <div class="row">
-                    <form class="col s12">
+                    <form class="col s12" name="form" id="form">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="ride-name" name="ride-name" type="text" class="validate" required>
                                 <label for="ride-name">Nombre del Ride</label>
+                                <div class="left" id="alert-nameRide"></div>
                             </div>
                             <div class="input-field col s6">
                                 <input name="start" id="start" type="text" class="validate" required>
                                 <label for="start">Salida</label>
+                                <div class="left" id="alert-start"></div>
                             </div>
                             <div class="input-field col s6">
                                 <input name="end" id="end" type="text" class="validate" required>
                                 <label for="end">Destino</label>
+                                <div class="left" id="alert-end"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea name="description" id="description" type="text" class="validate" rows="100" required></textarea>
+                                <textarea name="description" id="description" type="text" class="validate" rows="100"
+                                    required></textarea>
                                 <label for="description">Descripción</label>
+                                <div class="left" id="alert-description"></div>
                             </div>
                         </div>
                         <hr>
@@ -73,67 +93,71 @@
                         <div class="col s6">
                             <div class="row">
                                 <div class="input-field col s10">
-                                    <input placeholder="Nombre del Ride" id="hour-start" name="hour-start" type="time" class="validate" required>
-                                    <label for="hour-start">Hora de salida</label>
+                                    <input placeholder="Nombre del Ride" id="start-time" name="start-time" type="time"
+                                        class="validate" required>
+                                    <label for="start-time">Hora de salida</label>
+                                    <div class="left" id="alert-startTime"></div>
                                 </div>
                                 <div class="input-field col s10">
-                                    <input name="hour-end" id="hour-end" type="time" class="validate" required>
-                                    <label for="hour-end">Hora de llegada</label>
+                                    <input name="end-time" id="end-time" type="time" class="validate" required>
+                                    <label for="end-time">Hora de llegada</label>
+                                    <div class="left" id="alert-endTime"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col s6">
                             <h6 class="">Seleccione los días</h6>
                             <p>
-                            <label>
-                                <input type="checkbox" name="monday" id="monday" />
-                                <span>Lunes</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="monday" id="monday" value="Lunes" />
+                                    <span>Lunes</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="tuesday" id="tuesday"/>
-                                <span>Martes</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="tuesday" id="tuesday" value="Martes" />
+                                    <span>Martes</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="wednesday" id="wednesday"/>
-                                <span>Miercoles</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="wednesday" id="wednesday" />
+                                    <span>Miercoles</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="thursday" id="thursday"/>
-                                <span>Jueves</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="thursday" id="thursday" />
+                                    <span>Jueves</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="friday" id="friday"/>
-                                <span>Viernes</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="friday" id="friday" />
+                                    <span>Viernes</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="saturday" id="saturday"/>
-                                <span>Sábado</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="saturday" id="saturday" />
+                                    <span>Sábado</span>
+                                </label>
                             </p>
                             <p>
-                            <label>
-                                <input type="checkbox" name="sunday" id="sunday"/>
-                                <span>Domingo</span>
-                            </label>
+                                <label>
+                                    <input type="checkbox" name="sunday" id="sunday" />
+                                    <span>Domingo</span>
+                                </label>
                             </p>
+                            <div class="left" id="alert-day"></div>
                         </div>
-                        <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>                        
-                        <a class="btn waves-effect green btn-long"><i class="material-icons left">save</i>Guardar</a>
+                        <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
+                        <a class="waves-effect waves-light green btn-long btn modal-trigger" id="btn_ride" href="#modal1"><i class="material-icons left">save</i>Guardar</a>
                     </form>
-                </div>            
+                </div>
             </div>
         </div>
-        <footer class="page-footer blue">
+        <footer class="page-footer black">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -162,15 +186,19 @@
 
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
+    <script src="./js/materialize.js"></script>
+    <script src="./js/sessionstorage.js"></script>
+    <script src="./js/localstorage.js"></script>
+    <script src="./js/constant.js"></script>
+    <script src="./js/object.js"></script>
+    <script src="./js/alert.js"></script>
     <script src="./js/app.js"></script>
-    <script>
-        activeScriptMaterialize();
-    </script>
+    <script src="./js/bindevent.js"></script>
 </body>
 
 </html>

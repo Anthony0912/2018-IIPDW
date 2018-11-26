@@ -1,64 +1,16 @@
 /**
- * constantes para extraer los datos al localstroge
+ * funcion en cargada en la validacion del registro del usuario, esta función
+ * se dispara cuando el boton del registro es pulsado
  */
-const persons = getFromLocalStorage('persons');
-
-/**
- * funcion que obtiene los datos del usuario y los pasa a 
- * un objecto
- */
-function objectUser() {
-    let name = document.getElementById('name').value.trim();
-    let lastname = document.getElementById('lastname').value.trim();
-    let phone = document.getElementById('phone').value.trim();
-    let username = document.getElementById('username').value.toLowerCase().trim();
-    let passwd = document.getElementById('passwd').value.trim();
-
-    let person = {
-        name,
-        lastname,
-        phone,
-        username,
-        passwd
-    }
-
-    return person;
-}
-
-/**
- * funcion encargada de extrar la nombre de usuario y la contraseña de los campos del formulario
- */
-function objectLogin() {
-    let username = document.getElementById('user').value.trim();
-    let passwd = document.getElementById('password').value.trim();
-
-    let person = {
-        username,
-        passwd
-    }
-
-    return person;
-}
-
-/**
- * funcion que se encarga de alertar al usuario sobre sobre los campos que faltan por
- * llenar
- */
-function alertLogin() {
-    let person = objectLogin();
-    let alertUserName = document.getElementById('alert-username');
-    let alertPasswd = document.getElementById('alert-passwd');
-
-    if (!person.username.length > 0) {
-        setAlertError(alertUserName);
-    }else{
-        setAlertError(alertUserName, null);
-
-    }
-    if (!person.passwd.length > 0) {
-        setAlertError(alertPasswd);
-    }else{ 
-        setAlertError(alertPasswd, null);
+function validationRegister() {
+    const person = objectRegister();
+    let repasswd = document.getElementById('passwd-repeat').value.trim();
+    if (person.name.length > 0 && person.lastname.length > 0 && person.phone.length > 7
+        && person.username.length > 0 && person.passwd > 7 && repasswd.length > 7
+        && repasswd === person.passwd && !thereIsAUserName(person.username, 'persons')) {
+        if (addItemsToTheArray(person, 'persons') && saveToSessionStorage('person', person)) {
+            location.href = './dashboard.html';
+        }
     }
 }
 
@@ -67,16 +19,55 @@ function alertLogin() {
  */
 function validationLogin() {
     const person = objectLogin();
+    const existUser = login(person);
     let alertPasswd = document.getElementById('alert-passwd');
     if (person.username.length > 0 && person.passwd.length > 0) {
-        if (login(person)) {
-            if (saveToSessionStorage('person', person)) {
+        if (existUser) {
+            if (saveToSessionStorage('person', existUser)) {
                 location.href = './dashboard.html';
             }
-        }else {
+        } else {
             setAlertError(alertPasswd, 'El usuario o la contraseña son invalidos.');
         }
     }
+}
+
+/**
+ * funcion que valida que los campos del rides esten llenos
+ */
+function validationRide() {
+    const ride = objectRide();
+    if (ride.nameRide.length > 0 && ride.start.length > 0 &&
+        ride.end.length > 0 && ride.description.length > 0 &&
+        ride.startTime.length > 0 && ride.endTime.length > 0 &&
+        ride.days.length > 0) {
+        if (addItemsToTheArray(ride, 'rides')) {
+            setAlertWindow('¡Se guardado con exito!');
+            resetForm('form');
+            clearAlertRide();
+        }
+    }
+}
+
+/**
+ * funcion que limpia los campos de las alertas del ride
+ */
+function clearAlertRide() {
+    document.getElementById('alert-nameRide').innerHTML = '';
+    document.getElementById('alert-start').innerHTML = '';
+    document.getElementById('alert-end').innerHTML = '';
+    document.getElementById('alert-description').innerHTML = '';
+    document.getElementById('alert-startTime').innerHTML = '';
+    document.getElementById('alert-endTime').innerHTML = '';
+    document.getElementById('alert-day').innerHTML = '';
+}
+
+/**
+ * funcion que limpia los campos del formulario
+ * @param {} form id del formulario que se desea limpiar
+ */
+function resetForm(form) {
+    document.getElementById(form).reset();
 }
 
 /**
@@ -90,86 +81,6 @@ function login(object) {
     return false;
 }
 
-/**
- * funcion que se encarga de alertar al usuario sobre sobre los campos que faltan por
- * llenar
- */
-function alertTheUser() {
-    const person = objectUser();
-    let repasswd = document.getElementById('passwd-repeat').value.trim();
-    let alertName = document.getElementById('alert-name');
-    let alertLastName = document.getElementById('alert-lastname');
-    let alertPhone = document.getElementById('alert-phone');
-    let alertUserName = document.getElementById('alert-username');
-    let alertPasswd = document.getElementById('alert-passwd');
-    let alertRePasswd = document.getElementById('alert-repasswd');
-
-
-    if (person.name.length > 0) {
-        setAlertSuccess(alertName);
-    } else {
-        setAlertError(alertName);
-    }
-
-    if (person.lastname.length > 0) {
-        setAlertSuccess(alertLastName);
-    } else {
-        setAlertError(alertLastName);
-    }
-
-    if (person.phone.length > 7) {
-        setAlertSuccess(alertPhone);
-    } else {
-        setAlertError(alertPhone);
-    }
-
-    if (person.username.length > 0) {
-        if (thereIsAUserName(person.username, 'persons')) {
-            setAlertError(alertUserName, 'Este nombre de usuario ya existe');
-        } else {
-            setAlertSuccess(alertUserName);
-        }
-    } else {
-        setAlertError(alertUserName);
-    }
-
-    if (person.passwd.length > 0) {
-        if (person.passwd.length < 8) {
-            setAlertError(alertPasswd, 'Tu contraseña debe tener más de 8 caracteres.');
-        } else {
-            setAlertSuccess(alertPasswd);
-        }
-    } else {
-        setAlertError(alertPasswd);
-    }
-
-    if (repasswd.length > 0) {
-        if (repasswd != person.passwd) {
-            setAlertError(alertRePasswd, 'No coincide tu contraseña.');
-        } else {
-            setAlertSuccess(alertRePasswd);
-        }
-    } else {
-        setAlertError(alertRePasswd);
-    }
-}
-
-
-/**
- * funcion en cargada en la validacion del registro del usuario, esta función 
- * se dispara cuando el boton del registro es pulsado
- */
-function validationRegisterUser() {
-    const person = objectUser();
-    let repasswd = document.getElementById('passwd-repeat').value.trim();
-    if (person.name.length > 0 && person.lastname.length > 0 && person.phone.length > 7
-        && person.username.length > 0 && person.passwd > 7 && repasswd.length > 7
-        && repasswd === person.passwd && !thereIsAUserName(person.username, 'persons')) {
-        if (addItemsToTheArray(person, 'persons') && saveToSessionStorage('person', person)) {
-            location.href = './dashboard.html';
-        }
-    }
-}
 
 /**
  * funcion que valida que solo se pueda digita numeros en los campas de texto asignados
@@ -193,80 +104,25 @@ function thereIsAUserName(username) {
 }
 
 /**
- * funcion que dispara la alerta, verifica que los campos esten correctos
- * @param {*} alert elemento id que dispara la alerta
+ * funcion encargada de mostrar los datos del usuario en pantalla
  */
-function setAlertSuccess(alert) {
-    alert.innerHTML = '<i class="tiny material-icons green-text">done</i> Correcto';
-    alert.setAttribute('style', 'color:green;');
+function loadDataUser() {
+    const person = getFromSessionStorage('person');
+    let viewName = document.getElementById('name-nav');
+    let viewUser = document.getElementById('username-nav');
+    let viewNameOut = document.getElementById('name-nav-out');
+    if (person) {
+        viewName.innerHTML = person.name + ' ' + person.lastname + '<br>';
+        viewUser.innerHTML = 'Usuario: ' + person.username;
+        viewNameOut.innerHTML = 'Bienvenido ' + person.username;
+    }
 }
 
 /**
- * funcion que dispara la alertar, verifica que los errores del usuario
- * @param {*} alert elemento id que dispara la alerta
- * @param {*} messager texto de alerta
+ * funcion que cierra la session del usuario
  */
-function setAlertError(alert, messager = 'Debes llenar este campo.') {
-    alert.innerHTML = messager;
-    alert.setAttribute('style', 'color:red;');
+function closeSession() {
+    if (removeSessionStorage('person')) {
+        location.href = './index.html';
+    }
 }
-
-/**
- * funcion en cargada que en el input tipo text se pueda solo se pueda precionar números
- */
-function bindEventsKeyPressInputText() {
-    jQuery('#phone').bind('keypress', (element) => {
-        validationOnlyNumber
-    });
-}
-
-/**
- * funcion de dispara el eventos de keyup a los campos de texto 
- */
-function bindEventsKeyUpInputText() {
-    jQuery('#name').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#lastname').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#phone').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#username').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#passwd').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#passwd-repeat').bind('keyup', (element) => {
-        alertTheUser();
-    });
-    jQuery('#user').bind('keyup', (element) => {
-        alertLogin();
-    });
-    jQuery('#password').bind('keyup', (element) => {
-        alertLogin();
-    });
-}
-
-/**
- * funcion que dispara los eventos de los botones
- */
-function bindEventsButton() {
-    jQuery('#btn_register').bind('click', (element) => {
-        validationRegisterUser();
-    });
-    jQuery('#btn_login').bind('click', (element) => {
-        validationLogin();
-    });
-}
-
-
-/**
- * llamada de los metodos que contienen los eventos
- */
-bindEventsButton();
-bindEventsKeyUpInputText();
-bindEventsKeyPressInputText();
-

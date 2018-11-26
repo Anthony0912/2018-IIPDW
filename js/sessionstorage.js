@@ -15,3 +15,12 @@ function saveToSessionStorage(key, value) {
     sessionStorage.setItem(key, JSON.stringify(value));
     return true;
 }
+
+/**
+ * funcion encargada de limpiar el sessionstorage
+ * @param {*} key llave que esta ubicada en la session
+ */
+function removeSessionStorage(key) {
+    sessionStorage.removeItem(key);
+    return true;
+}
