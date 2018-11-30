@@ -21,11 +21,11 @@ function getFromLocalStorage(key) {
  * @param {*} newData nuevos datos que se agregaran al localstorage
  * @param {*} key nombre de la llave que se usara para meter los nuevos datos al localstorage
  */
-function addItemsToTheArray(newData, key) {
+function addItemsToTheArray(key, value) {
     let tempArray = getFromLocalStorage(key);
     if (!tempArray) {
         tempArray = [];
     }
-    tempArray.push(newData);
+    tempArray.push(value);
     return saveToLocalStorage(key, tempArray);
 }
