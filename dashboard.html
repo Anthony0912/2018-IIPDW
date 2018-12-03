@@ -9,9 +9,11 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/icon.css">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/materialize.min.css">
 
     <!-- My styles CSS -->
     <link rel="stylesheet" href="./css/styles.css">
@@ -63,38 +65,19 @@
             <div class="section white">
                 <h2 class="header center">Mis Rides</h2>
                 <a class="btn waves-effect green btn-small right" href="./rides.html"><i class="material-icons left">add</i>Añadir</a>
-                <table class="highlight centered">
+                <table class="table highlight centered">
                     <thead>
                         <tr>
                             <th>Usuario</th>
                             <th>Inicio</th>
                             <th>Destino</th>
+                            <th>Hora de salida</th>
+                            <th>Hora de llegada</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
-                            <td><a class="btn waves-effect yellow darken-4 btn-small"><i class="material-icons left">edit</i>editar</a></td>
-                            <td><a class="btn waves-effect red btn-small"><i class="material-icons left">delete</i>Elimnar</a></td>
-                        </tr>
-                        <tr>
-                            <td>Alan</td>
-                            <td>Jellybean</td>
-                            <td>$3.76</td>
-                            <td><a class="btn waves-effect yellow darken-4 btn-small"><i class="material-icons left">edit</i>editar</a></td>
-                            <td><a class="btn waves-effect red btn-small"><i class="material-icons left">delete</i>Elimnar</a></td>
-                        </tr>
-                        <tr>
-                            <td>Jonathan</td>
-                            <td>Lollipop</td>
-                            <td>$7.00</td>
-                            <td><a class="btn waves-effect yellow darken-4 btn-small"><i class="material-icons left">edit</i>editar</a></td>
-                            <td><a class="btn waves-effect red btn-small"><i class="material-icons left">delete</i>Elimnar</a></td>
-                        </tr>
+                    <tbody id="rides_table">
                     </tbody>
                 </table>
             </div>
@@ -125,11 +108,23 @@
             </div>
         </footer>
     </div>
+    
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
     <script src="./js/materialize.js"></script>

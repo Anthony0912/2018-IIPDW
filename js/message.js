@@ -3,8 +3,10 @@
  * @param {*} alert elemento id que dispara la alerta
  */
 function setAlertSuccess(alert) {
-    alert.innerHTML = '<i class="tiny material-icons green-text">done</i> Correcto';
-    alert.setAttribute('style', 'color:green;');
+    if (alert) {
+        alert.innerHTML = '<i class="tiny material-icons green-text">done</i> Correcto';
+        alert.setAttribute('style', 'color:green;');
+    }
 }
 
 /**
@@ -13,8 +15,10 @@ function setAlertSuccess(alert) {
  * @param {*} messager texto de alerta
  */
 function setAlertError(alert, messager = 'Debes llenar este campo.') {
-    alert.innerHTML = messager;
-    alert.setAttribute('style', 'color:red;');
+    if (alert) {
+        alert.innerHTML = messager;
+        alert.setAttribute('style', 'color:red;');
+    }
 }
 
 /**

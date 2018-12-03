@@ -6,4 +6,3 @@ function activeScriptMaterialize() {
         M.AutoInit();
     });
 }
-activeScriptMaterialize();

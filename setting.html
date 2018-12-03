@@ -9,10 +9,12 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/icon.css">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="./css/materialize.min.css">
+    
     <!-- My styles CSS -->
     <link rel="stylesheet" href="./css/styles.css">
 
@@ -21,8 +23,9 @@
 
 <body>
     <div class="container-fluid">
+        <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!" id="close-session">Cerrar session</a></li>
+            <li><a href="#!" id="" class="close-session">Cerrar session</a></li>
         </ul>
         <nav class="black">
             <div class="nav-wrapper">
@@ -37,7 +40,7 @@
                     <li><a href="./dashboard.html">Dashboard</a></li>
                     <li><a href="./rides.html">Rides</a></li>
                     <li><a href="./setting.html">Configuración</a></li>
-                    <li><a class="dropdown-trigger" href="#!" id="name-nav-out" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" id="name-nav-out" data-target="dropdown1"><i class="material-icons right white">arrow_drop_down</i></a></li>
                 </ul>
         </nav>
 
@@ -55,7 +58,7 @@
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li><a href="./rides.html">Rides</a></li>
             <li><a href="./setting.html">Configuración</a></li>
-            <li><a href="#">Cerrar session</a></li>
+            <li><a href="#" id="" class="close-session">Cerrar session</a></li>
         </ul>
         <div class="section-signin">
             <div class="container">
@@ -66,7 +69,7 @@
                             <div class="input-field col s12">
                                 <input id="full-name" name="full-name" type="text" class="validate" required>
                                 <label for="full-name">Nombre Completo</label>
-                                <div class="left" id="alert-fullName"></div>
+                                <div class="left" id="alert-fullname"></div>
                             </div>
                             <div class="input-field col s12">
                                 <input name="speed" id="speed" type="number" class="validate" required>
@@ -76,13 +79,13 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea name="about-me" id="about-me" type="text" class="validate" required></textarea>
+                                <textarea name="about-me" id="about-me" class="about-me validate" required></textarea>
                                 <label for="description">Sobre mí</label>
-                                <div class="left" id="alert-aboutMe"></div>
+                                <div class="left" id="alert-aboutme"></div>
                             </div>
                         </div>
                         <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
-                        <a class="btn waves-effect green btn-long"><i class="material-icons left">save</i>Guardar</a>
+                        <button type="button" name="btn" id="btn" class='btn btn-long waves-effect green'><i class="material-icons left">save</i>Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -116,18 +119,20 @@
 
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
     <script src="./js/materialize.js"></script>
-    <script src="./js/constant.js"></script>
+    <script src="./js/message.js"></script>
     <script src="./js/object.js"></script>
     <script src="./js/sessionstorage.js"></script>
     <script src="./js/localstorage.js"></script>
     <script src="./js/app.js"></script>
-    <script src="./js/alert.js"></script>
+    <script src="./js/validation.js"></script>
     <script src="./js/bindevent.js"></script>
 </body>
 

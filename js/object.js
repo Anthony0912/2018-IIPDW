@@ -5,10 +5,10 @@ function objectRegister() {
     let name = $.trim($('#name').val());
     let lastName = $.trim($('#lastname').val());
     let phone = $.trim($('#phone').val());
-    let userName = $.trim($('#username').val().toLowerCase());
+    let userName = $.trim($('#username').val()).toLowerCase();
     let passwd = $.trim($('#passwd').val());
     let speed = $.trim($('#speed').val());
-    let aboutMe = $.trim($('#about-me').val());
+    let aboutme = $.trim($('#about-me').val());
 
     const person = {
         name,
@@ -17,8 +17,80 @@ function objectRegister() {
         userName,
         passwd,
         speed,
-        aboutMe
+        aboutme
     }
 
     return person;
+}
+
+/**
+ * funcion que obtiene los datos del formulario login del usuario
+ */
+function objectLogin() {
+    let userName = $.trim($('#usernameLogin').val()).toLowerCase();
+    let passwd = $.trim($('#passwdLogin').val());
+
+    const person = {
+        userName,
+        passwd
+    }
+
+    return person;
+}
+
+/**
+ * funcion que obtiene los datos del formulario de configuciones del usuario
+ */
+function objectSetting() {
+    let fullName = $.trim($('#full-name').val());
+    let speed = $.trim($('#speed').val());
+    let aboutme = $.trim($('#about-me').val());
+
+    const setting = {
+        fullName,
+        speed,
+        aboutme
+    }
+
+    return setting;
+}
+
+/**
+ * funcion que obtiene los datos del formulario de rides
+ */
+function objectRide() {
+    let idRide = 0;
+    let idPerson = 0;
+    let rideName = $.trim($('#ride-name').val());
+    let start = $.trim($('#start').val());
+    let end = $.trim($('#end').val());
+    let description = $.trim($('#description').val());
+    let startTime = $.trim($('#start-time').val());
+    let endTime = $.trim($('#end-time').val());
+    let days = getCheckbox();
+
+    const ride = {
+        idRide,
+        idPerson,
+        rideName,
+        start,
+        end,
+        description,
+        startTime,
+        endTime,
+        days
+    }
+
+    return ride;
+}
+
+/**
+ * funcion que obtiene el id los checkbox seleccionados en el formulario 
+ */
+function getCheckbox() {
+    let days = [];
+    $("input[type=checkbox]:checked").each(function () {
+        days.push($(this).prop("id"));
+    });
+    return days;
 }

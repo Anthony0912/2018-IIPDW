@@ -14,6 +14,9 @@ function bindEventsKeyPressInputText() {
 function bindEventKeyUp() {
     jQuery('input.validate').bind('keyup', (element) => {
         validationRegister();
+        validationLogin();
+        validationSetting();
+        validationRide();
     });
 }
 
@@ -21,9 +24,13 @@ function bindEventKeyUp() {
  * funcion que registra al usuario al hacer click en el boton
  */
 function bindEventClick() {
-    jQuery('#btn_register').bind('click', (Element) => {
+    jQuery('#btn').bind('click', (element) => {
         registerUser();
+        loginUser();
+        settingUser();
+        createRide();
     });
+
     jQuery('a.close-session').bind('click', (element) => {
         closeSession();
     });
@@ -32,7 +39,10 @@ function bindEventClick() {
 /**
  * Lugar donde se disparan las funciones
  */
+activeScriptMaterialize();
 bindEventsKeyPressInputText();
 bindEventKeyUp();
 bindEventClick();
 loadDataToUser();
+loadSetting();
+loadTableData('rides');

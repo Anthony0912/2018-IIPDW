@@ -9,9 +9,11 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/icon.css">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/materialize.min.css">
 
     <!-- My styles CSS -->
     <link rel="stylesheet" href="./css/styles.css">
@@ -21,8 +23,9 @@
 
 <body>
     <div class="container-fluid">
+        <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!" id="close-session">Cerrar session</a></li>
+            <li><a href="#!" id="" class="close-session">Cerrar session</a></li>
         </ul>
         <nav class="black">
             <div class="nav-wrapper">
@@ -37,7 +40,7 @@
                     <li><a href="./dashboard.html">Dashboard</a></li>
                     <li><a href="./rides.html">Rides</a></li>
                     <li><a href="./setting.html">Configuración</a></li>
-                    <li><a class="dropdown-trigger" href="#!" id="name-nav-out" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" id="name-nav-out" data-target="dropdown1"><i class="material-icons right white">arrow_drop_down</i></a></li>
                 </ul>
         </nav>
 
@@ -55,7 +58,7 @@
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li><a href="./rides.html">Rides</a></li>
             <li><a href="./setting.html">Configuración</a></li>
-            <li><a href="#" id="close-session">Cerrar session</a></li>
+            <li><a href="#" id="" class="close-session">Cerrar session</a></li>
         </ul>
         <div class="section-signin">
             <div class="container">
@@ -66,16 +69,16 @@
                             <div class="input-field col s12">
                                 <input id="ride-name" name="ride-name" type="text" class="validate" required>
                                 <label for="ride-name">Nombre del Ride</label>
-                                <div class="left" id="alert-nameRide"></div>
+                                <div class="left" id="alert-rideName"></div>
                             </div>
                             <div class="input-field col s6">
                                 <input name="start" id="start" type="text" class="validate" required>
-                                <label for="start">Salida</label>
+                                <label for="start">Lugar de salida</label>
                                 <div class="left" id="alert-start"></div>
                             </div>
                             <div class="input-field col s6">
                                 <input name="end" id="end" type="text" class="validate" required>
-                                <label for="end">Destino</label>
+                                <label for="end">Lugar de destino</label>
                                 <div class="left" id="alert-end"></div>
                             </div>
                         </div>
@@ -152,8 +155,7 @@
                             <div class="left" id="alert-day"></div>
                         </div>
                         <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
-                        <a class="waves-effect waves-light green btn-long btn modal-trigger" id="btn_ride" href="#modal1"><i
-                                class="material-icons left">save</i>Guardar</a>
+                        <button type="button" class="btn waves-effect red btn-long green" id="btn"><i class="material-icons left">save</i>Guardar</button>
                     </form>
                 </div>
             </div>
@@ -187,18 +189,20 @@
 
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
     <script src="./js/materialize.js"></script>
-    <script src="./js/constant.js"></script>
+    <script src="./js/message.js"></script>
     <script src="./js/object.js"></script>
     <script src="./js/sessionstorage.js"></script>
     <script src="./js/localstorage.js"></script>
     <script src="./js/app.js"></script>
-    <script src="./js/alert.js"></script>
+    <script src="./js/validation.js"></script>
     <script src="./js/bindevent.js"></script>
 </body>
 

@@ -29,3 +29,21 @@ function addItemsToTheArray(key, value) {
     tempArray.push(value);
     return saveToLocalStorage(key, tempArray);
 }
+
+/**
+ * funcion encargada de limpiar el localstorage
+ * @param {*} key llave donde de ubica en el localstorage
+ */
+function removeKeyLocalstorage(key) {
+    localStorage.removeItem(key);
+    return true;
+}
+
+function editRide(entity, idRide) {
+    let data = getFromLocalStorage(entity);
+    data.forEach((element, index) => {
+        if (index === (idRide - 1)) {
+
+        }
+    });
+}
