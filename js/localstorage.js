@@ -38,12 +38,3 @@ function removeKeyLocalstorage(key) {
     localStorage.removeItem(key);
     return true;
 }
-
-function editRide(entity, idRide) {
-    let data = getFromLocalStorage(entity);
-    data.forEach((element, index) => {
-        if (index === (idRide - 1)) {
-
-        }
-    });
-}

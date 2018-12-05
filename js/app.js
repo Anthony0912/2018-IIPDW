@@ -11,8 +11,8 @@ function validationOnlyNumber() {
  * funcion que cierra la session del usuario
  */
 function closeSession() {
-    if (removeSessionStorage('person')) {
-        location.href = './index.html';
+    if (removeSessionStorage('ID')) {
+        location.href = './login.html';
     }
 }
 
@@ -25,67 +25,78 @@ function split(text, split) {
     return text.split(split);
 }
 
+/**
+ * funcion que limpia los campos del formulario
+ */
 function clearForm() {
     document.getElementById('form').reset();
 }
 
 /**
- * funcion que valida si el nombre de usuario ya existe
- * @param {*} userName nombre del usuario a consultar en el localstorage 
+ * funcion que obtiene el usuario completo por id
+ * @param {*} persons array de personas
+ * @param {*} ID id del usuario a buscar
+ */
+function getPersonByID(ID) {
+    const persons = getFromLocalStorage('persons');
+    let temp = '';
+    persons.forEach((element, index) => {
+        if (index == (ID - 1)) {
+            temp = element;
+        }
+    });
+    return temp;
+}
+
+/**
+ * funcion que varifica si existe el nombre usuario
+ * @param {*} userName nombre del usuario
  */
 function thereIsAUserName(userName) {
     const persons = getFromLocalStorage('persons');
-    if (persons) {
-        return persons.find(person => userName === person.userName);
-    }
-    return false;
+    return persons ? persons.find(element =>
+        element.userName.toLowerCase() == userName.toLowerCase()) : false;
 }
 
 /**
- * funcion que valida si el nombre de usuario y la contraseña existe
- * @param {*} userName nombre de usuario a consultar en el localstorage
- * @param {*} passwd contraseña del usuario a consultar en el localstorage
+ * funcion que varifica si el usuario y la contraseña son verdaderas
+ * @param {*} userName nombre del usuario
+ * @param {*} passwd contraseña del usuario
  */
 function thereIsAUserNameAndPasswd(userName, passwd) {
     const persons = getFromLocalStorage('persons');
-    if (persons) {
-        return persons.find(person => userName === person.userName && passwd === person.passwd);
-    }
-    return false;
+    return persons ? persons.find(element =>
+        element.userName.toLowerCase() == userName.toLowerCase()
+        && element.passwd == passwd) : false;
 }
-
 /**
- * funcion que obtiene el id del usuario
- * @param {*} person objecto persona donde se encuentran los usuarios registrados
- * @param {*} userName nombre de usuario por el cual es unico, hace que la busqueda 
- * sea más efectiva y sertera
+ * funcion que extrae el id del usuario
+ * @param {*} userName nombre del usuario
  */
 function getIdUser(userName) {
     const persons = getFromLocalStorage('persons');
-    var id = 0;
-    if (persons) {
-        persons.forEach((element, index) => {
-            if (element.userName === userName) {
-                id = index + 1;
-            }
-        });
-    }
-    return { id };
+    return persons ? persons.findIndex(element =>
+        element.userName.toLowerCase() == userName.toLowerCase()) + 1 : 0;
 }
 
 /**
- * funcion que recupera al usuario que se encuentra en la lista de persons
- * @param {*} id ID del usuario
+ * funcion que carga las informació nesesario del usuario en el index
  */
-function getPersonById(id) {
+function loadDataToUser() {
     const persons = getFromLocalStorage('persons');
-    let person = null;
-    persons.forEach((element, index) => {
-        if (index === (id - 1)) {
-            person = element;
-        }
-    });
-    return person;
+    const ID = getFromSessionStorage('ID');
+    if (persons && ID) {
+        let nameNav = document.getElementById('name-nav');
+        let userNameNav = document.getElementById('username-nav');
+        let nameOut = document.getElementById('name-nav-out');
+        persons.forEach((element, index) => {
+            if (index === (ID - 1)) {
+                nameNav.innerHTML = element.name + ' ' + element.lastName + '</br>';
+                userNameNav.innerHTML = 'Usuario: ' + element.userName;
+                nameOut.innerHTML = 'Bienvenido ' + element.userName;
+            }
+        });
+    }
 }
 
 /**
@@ -97,7 +108,7 @@ function registerUser() {
     if (person.name.length > 0 && person.lastName.length > 0 && person.phone.length > 7
         && person.userName.length > 0 && person.passwd === repeatPasswd
         && !thereIsAUserName(person.userName) && addItemsToTheArray('persons', person)
-        && saveToSessionStorage('person', getIdUser(person.userName))) {
+        && saveToSessionStorage('ID', getIdUser(person.userName))) {
         location.href = './dashboard.html';
     }
 }
@@ -112,8 +123,45 @@ function loginUser() {
             let alertPasswd = document.getElementById('alert-passwdLogin');
             setAlertError(alertPasswd, 'El nombre de usuario o la contraseña son incorrectos.');
         } else {
-            saveToSessionStorage('person', getIdUser(person.userName));
+            saveToSessionStorage('ID', getIdUser(person.userName));
             location.href = './dashboard.html';
+        }
+    }
+}
+
+/**
+ * funcion que carga las configuraciones del usuario
+ */
+function loadSetting() {
+    const persons = getFromLocalStorage('persons');
+    const ID = getFromSessionStorage('ID');
+    if (persons && ID) {
+        persons.forEach((element, index) => {
+            if (index == (ID - 1)) {
+                $('#full-name').val(element.name + ' ' + element.lastName);
+                $('#speed').val(element.speed);
+                $('#about-me').val(element.aboutme);
+            }
+        });
+    }
+}
+
+/**
+ * funcion que actualiza los datos del usuario en el formulario persona
+ */
+function settingUser() {
+    const setting = objectSetting();
+    if (setting.fullName.length > 0 && setting.speed.length > 0
+        && setting.aboutme.length > 0) {
+        let ID = getFromSessionStorage('ID');
+        if (updatePerson(ID, setting)) {
+            setAlertWindow('¡Se ha hecho los cambios exitosamente!');
+            let alerts = [
+                document.getElementById('alert-fullname'),
+                document.getElementById('alert-speed'),
+                document.getElementById('alert-aboutme')
+            ];
+            clearAlert(alerts);
         }
     }
 }
@@ -123,12 +171,12 @@ function loginUser() {
  * @param {*} id ID del usuario que se encuentra en posicion especifica en el arreglo persons
  * @param {*} setting Objecto que captura los datos del formulario configuraciones
  */
-function updatePerson(id, setting) {
+function updatePerson(ID, setting) {
     let persons = getFromLocalStorage('persons');
     let result = false;
     if (persons) {
         persons.forEach((element, index) => {
-            if (index === (id - 1)) {
+            if (index == (ID - 1)) {
                 let fullName = split(setting.fullName, ' ');
                 element.name = fullName[0];
                 element.lastName = fullName[1];
@@ -144,60 +192,6 @@ function updatePerson(id, setting) {
 }
 
 /**
- * funcion que actualiza los datos del usuario en el formulario persona
- */
-function settingUser() {
-    const setting = objectSetting();
-    if (setting.fullName.length > 0 && setting.speed.length > 0
-        && setting.aboutme.length > 0) {
-        let id = getFromSessionStorage('person').id;
-        if (updatePerson(id, setting)) {
-            setAlertWindow('¡Se ha hecho los cambios exitosamente!');
-            setAlertError(document.getElementById('alert-fullname'), '');
-            setAlertError(document.getElementById('alert-speed'), '');
-            setAlertError(document.getElementById('alert-aboutme'), '');
-        }
-    }
-}
-
-/**
- * funcion que carga las informació nesesario del usuario en el index
- */
-function loadDataToUser() {
-    const persons = getFromLocalStorage('persons');
-    const person = getFromSessionStorage('person');
-    if (persons && person) {
-        let nameNav = document.getElementById('name-nav');
-        let userNameNav = document.getElementById('username-nav');
-        let nameOut = document.getElementById('name-nav-out');
-        persons.forEach((element, index) => {
-            if (index === (person.id - 1)) {
-                nameNav.innerHTML = element.name + ' ' + element.lastName + '</br>';
-                userNameNav.innerHTML = 'Usuario: ' + element.userName;
-                nameOut.innerHTML = 'Bienvenido ' + element.userName;
-            }
-        });
-    }
-}
-
-/**
- * funcion que carga las configuraciones del usuario
- */
-function loadSetting() {
-    const persons = getFromLocalStorage('persons');
-    const person = getFromSessionStorage('person');
-    if (persons && person) {
-        persons.forEach((element, index) => {
-            if (index === (person.id - 1)) {
-                $('#full-name').val(element.name + ' ' + element.lastName);
-                $('#speed').val(element.speed);
-                $('#about-me').val(element.aboutme);
-            }
-        });
-    }
-}
-
-/**
  * funcion que crea un ride 
  */
 function createRide() {
@@ -206,24 +200,27 @@ function createRide() {
     if (ride.rideName.length > 0 && ride.start.length > 0
         && ride.end.length > 0 && ride.description.length > 0
         && ride.startTime.length > 0 && ride.endTime.length > 0) {
-        console.log(ride.days);
         if (ride.days.length === 0) {
             setAlertError(alertDays, 'Debes seleccionar los día de planeas hacer tu viaje.');
         } else {
-            ride.idPerson = getFromSessionStorage('person').id;
+            ride.idPerson = getFromSessionStorage('ID');
             ride.idRide = getFromLocalStorage('rides');
             ride.idRide = ride.idRide != null ? (ride.idRide.length + 1) : 1;
             if (addItemsToTheArray('rides', ride)) {
-                setAlertError(document.getElementById('alert-rideName'), '');
-                setAlertError(document.getElementById('alert-start'), '');
-                setAlertError(document.getElementById('alert-end'), '');
-                setAlertError(document.getElementById('alert-description'), '');
-                setAlertError(document.getElementById('alert-startTime'), '');
-                setAlertError(document.getElementById('alert-endTime'), '');
+                let alerts = [
+                    document.getElementById('alert-rideName'),
+                    document.getElementById('alert-start'),
+                    document.getElementById('alert-end'),
+                    document.getElementById('alert-description'),
+                    document.getElementById('alert-startTime'),
+                    document.getElementById('alert-endTime'),
+                    alertDays
+                ];
+                clearAlert(alerts);
                 clearForm();
-                setAlertWindow('¡Se ha creado tu ride exitosamente!');
                 const rides = getFromLocalStorage('rides');
                 renderTable('rides', rides);
+                setAlertWindow('¡Se ha creado tu ride exitosamente!');
             }
         }
     }
@@ -235,43 +232,93 @@ function createRide() {
  * @param {*} tableData informacion que se insertara en la tabla
  */
 function renderTable(tableName, tableData) {
-    let IdPerson = getFromSessionStorage('person');
-    if (tableData && IdPerson) {
-        let person = getPersonById(IdPerson.id);
-        let table = $(`#${tableName}_table`);
-        let rows = "";
+    let rows = "";
+    let table = $(`#${tableName}_table`);
+    let ID = getFromSessionStorage('ID');
+    if (tableData && ID) {
+        let person = getPersonByID(ID);
         tableData.forEach(element => {
-            if (element.idPerson === IdPerson.id) {
-                let row = `<tr><td>${person.name + ' ' + person.lastName}</td><td>${element.start}</td><td>${element.end}</td><td>${element.startTime}</td><td>${element.endTime}</td>`;
-                row += `<td> <a href="#modal1" class="btn waves-effect yellow darken-4 btn-long modal-trigger" onclick="editRide(this)" data-id="${element.idRide}" data-entity="${tableName}"><i class="material-icons left">edit</i>Edutar</a></td>
-                    <td><a class="btn waves-effect red btn-long" onclick="deleteRide(this);" data-id="${element.idRide}" data-entity="${tableName}"><i class="material-icons left">delete</i>Eliminar</a></td>`;
+            if (element.idPerson == ID) {
+                let row = `<tr><td>${person.name + ' ' + person.lastName}</td>
+                <td>${element.start}</td><td>${element.end}</td>
+                <td>${element.startTime}</td><td>${element.endTime}</td>`;
+                row += `<td> <a href="#modal1" class="btn waves-effect yellow darken-4 btn-long 
+                modal-trigger" onclick="loadDataEditRide(this)" data-id="${element.idRide}" 
+                data-entity="${tableName}"><i class="material-icons left">edit</i>Editar</a></td>
+                    <td><a class="btn waves-effect red btn-long" onclick="deleteRide(this);" 
+                    data-id="${element.idRide}" data-entity="${tableName}">
+                    <i class="material-icons left">delete</i>Eliminar</a></td>`;
                 rows += row + '</tr>';
             }
         });
-        if (rows === "") {
-            rows +=    `<tr><td colspan="7" class="center"><h3>No hay rides que mostrar...</h3></td></tr>`;
-        }
-        table.html(rows);
     }
+    if (rows === "") {
+        rows += `<tr><td colspan="7" class="center"><h3>No hay rides que mostrar...</h3></td></tr>`;
+    }
+    table.html(rows);
 }
 
-function loadDataRideInform(entity, idRide) {
-    const data = getFromLocalStorage(entity);
-    data.forEach((element, index) => {
-        if (index === (idRide - 1)) {
+/**
+ * funcion que carga los datos para editar los rides
+ * @param {*} element elemento que extrae el entity y el id del boton
+ */
+function loadDataEditRide(element) {
+    let object = $(element).data();
+    const rides = getFromLocalStorage(object.entity);
+    rides.forEach(element => {
+        if (element.idRide == object.id) {
+            $('#idRide').val(element.idRide);
             $('#ride-name').val(element.rideName);
             $('#start').val(element.start);
             $('#end').val(element.end);
             $('#description').val(element.description);
             $('#start-time').val(element.startTime);
             $('#end-time').val(element.endTime);
+            loadCheckbox(element.days);
         }
     });
 }
 
-function editRide(element) {
-    const object = $(element).data();
-
+/**
+ * funcion que edita los rides
+ */
+function editRide() {
+    let rides = getFromLocalStorage('rides');
+    let ride = objectRide();
+    let alertDays = document.getElementById('alert-day');
+    if (ride.rideName.length > 0 && ride.start.length > 0
+        && ride.end.length > 0 && ride.description.length > 0
+        && ride.startTime.length > 0 && ride.endTime.length > 0) {
+        if (ride.days.length === 0) {
+            setAlertError(alertDays, 'Debes seleccionar los día de planeas hacer tu viaje.');
+        } else {
+            let idRide = $('#idRide').val();
+            rides.forEach((element, index) => {
+                if (index == (idRide - 1)) {
+                    element.rideName = ride.rideName;
+                    element.start = ride.start;
+                    element.end = ride.end;
+                    element.description = ride.description;
+                    element.startTime = ride.startTime;
+                    element.endTime = ride.endTime;
+                    element.days = ride.days;
+                }
+            });
+            removeKeyLocalstorage('rides');
+            saveToLocalStorage('rides', rides);
+            let alerts = [
+                document.getElementById('alert-rideName'),
+                document.getElementById('alert-start'),
+                document.getElementById('alert-end'),
+                document.getElementById('alert-description'),
+                document.getElementById('alert-startTime'),
+                document.getElementById('alert-endTime'),
+                document.getElementById('alert-day')
+            ];
+            clearAlert(alerts);
+            loadTableData('rides');
+        }
+    }
 }
 
 function deleteRide(element) {
@@ -286,3 +333,7 @@ function loadTableData(tableName) {
     const rides = getFromLocalStorage('rides');
     renderTable(tableName, rides);
 }
+
+
+
+

@@ -108,16 +108,108 @@
             </div>
         </footer>
     </div>
-    
+
+    <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
+            <form class="col s12" name="form" id="form">
+                <div class="row">
+                    <div class="input col s12">
+                        <input type="text" id="idRide" hidden>
+                        <label for="ride-name">Nombre del Ride</label>
+                        <input id="ride-name" name="ride-name" type="text" class="validate" required>
+                        <div class="left" id="alert-rideName"></div>
+                    </div>
+                    <div class="input col s6">
+                        <label for="start">Lugar de salida</label>
+                        <input name="start" id="start" type="text" class="validate" required>
+                        <div class="left" id="alert-start"></div>
+                    </div>
+                    <div class="input col s6">
+                        <label for="end">Lugar de destino</label>
+                        <input name="end" id="end" type="text" class="validate" required>
+                        <div class="left" id="alert-end"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input col s12">
+                        <label for="description">Descripción</label>
+                        <textarea name="description" id="description" type="text" class="validate" rows="100" required></textarea>
+                        <div class="left" id="alert-description"></div>
+                    </div>
+                </div>
+                <hr>
+                <h4 class="header">Horarios</h4>
+                <br>
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input placeholder="Nombre del Ride" id="start-time" name="start-time" type="time" class="validate"
+                                required>
+                            <label for="start-time">Hora de salida</label>
+                            <div class="left" id="alert-startTime"></div>
+                        </div>
+                        <div class="input-field col s10">
+                            <input name="end-time" id="end-time" type="time" class="validate" required>
+                            <label for="end-time">Hora de llegada</label>
+                            <div class="left" id="alert-endTime"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <h6 class="">Seleccione los días</h6>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="monday" id="monday" value="Lunes" />
+                            <span>Lunes</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="tuesday" id="tuesday" value="Martes" />
+                            <span>Martes</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="wednesday" id="wednesday" />
+                            <span>Miercoles</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="thursday" id="thursday" />
+                            <span>Jueves</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="friday" id="friday" />
+                            <span>Viernes</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="saturday" id="saturday" />
+                            <span>Sábado</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="sunday" id="sunday" />
+                            <span>Domingo</span>
+                        </label>
+                    </p>
+                    <div class="left" id="alert-day"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
+                    <button type="button" class="btn waves-effect red btn-long green" id="btn_updateRides"><i class="material-icons left">save</i>Guardar</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-      </div>
+
+    </div>
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/jquery.min.js"></script>

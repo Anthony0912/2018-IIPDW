@@ -28,3 +28,14 @@ function setAlertError(alert, messager = 'Debes llenar este campo.') {
 function setAlertWindow(text) {
     M.toast({ html: text });
 }
+
+/**
+ * funcion que limpia las alertas
+ * @param {*} alerts arreglo de alertas donde contiene 
+ * información del html a modificar
+ */
+function clearAlert(alerts) {
+    alerts.forEach(element => {
+        element.innerHTML = '';
+    });
+}

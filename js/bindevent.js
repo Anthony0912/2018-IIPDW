@@ -24,13 +24,21 @@ function bindEventKeyUp() {
  * funcion que registra al usuario al hacer click en el boton
  */
 function bindEventClick() {
-    jQuery('#btn').bind('click', (element) => {
+    jQuery('#btn_register').bind('click', (element) => {
         registerUser();
+    });
+    jQuery('#btn_login').bind('click', (element) => {
         loginUser();
+    });
+    jQuery('#btn_setting').bind('click', (element) => {
         settingUser();
+    });
+    jQuery('#btn_rides').bind('click', (element) => {
         createRide();
     });
-
+    jQuery('#btn_updateRides').bind('click', (element) => {
+        editRide();
+    });
     jQuery('a.close-session').bind('click', (element) => {
         closeSession();
     });

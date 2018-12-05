@@ -5,7 +5,7 @@ function objectRegister() {
     let name = $.trim($('#name').val());
     let lastName = $.trim($('#lastname').val());
     let phone = $.trim($('#phone').val());
-    let userName = $.trim($('#username').val()).toLowerCase();
+    let userName = $.trim($('#username').val());
     let passwd = $.trim($('#passwd').val());
     let speed = $.trim($('#speed').val());
     let aboutme = $.trim($('#about-me').val());
@@ -27,7 +27,7 @@ function objectRegister() {
  * funcion que obtiene los datos del formulario login del usuario
  */
 function objectLogin() {
-    let userName = $.trim($('#usernameLogin').val()).toLowerCase();
+    let userName = $.trim($('#usernameLogin').val());
     let passwd = $.trim($('#passwdLogin').val());
 
     const person = {
@@ -93,4 +93,14 @@ function getCheckbox() {
         days.push($(this).prop("id"));
     });
     return days;
+}
+
+/**
+ * funcion que carga los checkbox seleccionados por el usuario
+ * @param {*} days arreglo de dias seleccionados
+ */
+function loadCheckbox(days) {
+    days.forEach((element, index) => {
+        $(`#${days[index]}`).attr("checked", "checked");
+    });
 }
