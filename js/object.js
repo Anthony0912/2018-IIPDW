@@ -99,8 +99,15 @@ function getCheckbox() {
  * funcion que carga los checkbox seleccionados por el usuario
  * @param {*} days arreglo de dias seleccionados
  */
-function loadCheckbox(days) {
-    days.forEach((element, index) => {
-        $(`#${days[index]}`).attr("checked", "checked");
+function loadCheckbox(days) {      
+    $(`#monday`).attr("checked", false);        
+    $(`#tuesday`).attr("checked", false);       
+    $(`#wednesday`).attr("checked", false);       
+    $(`#thursday`).attr("checked", false);       
+    $(`#friday`).attr("checked", false);       
+    $(`#saturday`).attr("checked", false);     
+    $(`#sunday`).attr("checked", false);
+    days.forEach((element, index) => {  
+        $(`#${days[index]}`).attr("checked", true);
     });
 }
