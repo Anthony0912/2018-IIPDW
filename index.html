@@ -96,9 +96,10 @@
                         </thead>
                         <tbody>
                             <!-- Modal Structure -->
-                            <div id="modal1" class="modal bottom-sheet">
+                            <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
                                 <div class="modal-content">
                                     <form class="col s12" name="form" id="form">
+                                        <h4 class="header center">Información del chofer</h4>
                                         <div class="row">
                                             <div class='input col s12'>
                                                 <label for="name" class="label-font">Nombre completo </label>
@@ -111,6 +112,20 @@
                                                 <p id="phone"></p>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="input col s12">
+                                                <label for="speed" class="label-font">Velocidad Promedio</label>
+                                                <p id="speed"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input col s12">
+                                                <label for="aboutme" class="label-font">Descripcion de <span id="user"></span></label>
+                                                <p id="aboutme"></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="header center">Información del viaje</h4>
                                         <div class="row">
                                             <div class="input col s12">
                                                 <input type="text" id="idRide" hidden>
@@ -151,43 +166,45 @@
                                             <h6 class="">Dias que se realizará el viaje</h6>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="monday" id="monday" value="Lunes" disabled/>
+                                                    <input type="checkbox" name="monday" id="monday" value="Lunes"
+                                                        disabled />
                                                     <span>Lunes</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="tuesday" id="tuesday" value="Martes" disabled/>
+                                                    <input type="checkbox" name="tuesday" id="tuesday" value="Martes"
+                                                        disabled />
                                                     <span>Martes</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="wednesday" id="wednesday" disabled/>
+                                                    <input type="checkbox" name="wednesday" id="wednesday" disabled />
                                                     <span>Miercoles</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="thursday" id="thursday" disabled/>
+                                                    <input type="checkbox" name="thursday" id="thursday" disabled />
                                                     <span>Jueves</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="friday" id="friday" disabled/>
+                                                    <input type="checkbox" name="friday" id="friday" disabled />
                                                     <span>Viernes</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="saturday" id="saturday" disabled/>
+                                                    <input type="checkbox" name="saturday" id="saturday" disabled />
                                                     <span>Sábado</span>
                                                 </label>
                                             </p>
                                             <p>
                                                 <label>
-                                                    <input type="checkbox" name="sunday" id="sunday" disabled/>
+                                                    <input type="checkbox" name="sunday" id="sunday" disabled />
                                                     <span>Domingo</span>
                                                 </label>
                                             </p>

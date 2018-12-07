@@ -100,14 +100,14 @@ function getCheckbox() {
  * @param {*} days arreglo de dias seleccionados
  */
 function loadCheckbox(days) {      
-    $(`#monday`).attr("checked", false);        
-    $(`#tuesday`).attr("checked", false);       
-    $(`#wednesday`).attr("checked", false);       
-    $(`#thursday`).attr("checked", false);       
-    $(`#friday`).attr("checked", false);       
-    $(`#saturday`).attr("checked", false);     
-    $(`#sunday`).attr("checked", false);
+    $('#monday').attr('checked', false);        
+    $('#tuesday').attr('checked', false);       
+    $('#wednesday').attr('checked', false);       
+    $('#thursday').attr('checked', false);       
+    $('#friday').attr('checked', false);       
+    $('#saturday').attr('checked', false);     
+    $('#sunday').attr('checked', false);
     days.forEach((element, index) => {  
-        $(`#${days[index]}`).attr("checked", true);
+        $(`#${days[index]}`).attr('checked', true);
     });
 }

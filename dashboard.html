@@ -110,9 +110,9 @@
     </div>
 
     <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <form class="col s12" name="form" id="form">
+    <form class="col s12" name="form" id="form">
+        <div id="modal1" class="modal">
+            <div class="modal-content">
                 <div class="row">
                     <div class="input col s12">
                         <input type="text" id="idRide" hidden>
@@ -202,14 +202,13 @@
                     </p>
                     <div class="left" id="alert-day"></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="modal-close btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
-                    <button type="button" class="btn waves-effect red btn-long green" id="btn_updateRides"><i class="material-icons left">save</i>Guardar</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-close btn waves-effect red btn-long"><i class="material-icons left">cancel</i>Cancelar</button>
+                <button type="button" class="btn waves-effect red btn-long green" id="btn_updateRides"><i class="material-icons left">save</i>Guardar</button>
+            </div>
         </div>
-
-    </div>
+    </form>
     <!-- Compiled and minified JavaScript jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/jquery.min.js"></script>

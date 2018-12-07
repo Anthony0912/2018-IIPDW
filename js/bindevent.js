@@ -41,6 +41,9 @@ function bindEventClick() {
     });
     jQuery('#btn_updateRides').bind('click', (element) => {
         editRide();
+        promise1.then(function (value) {
+            location.reload(true);
+        });
     });
     jQuery('a.close-session').bind('click', (element) => {
         closeSession();
@@ -57,4 +60,4 @@ bindEventClick();
 loadDataToUser();
 loadSetting();
 loadTableData('rides');
-loadTableDataIndex('ridesIndex', $('#start').val(), $('#end').val());
+loadTableDataIndex('ridesIndex', $('#start').val() ? $('#start').val() : '', $('#end').val() ? $('#start').val() : '');

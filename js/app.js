@@ -305,24 +305,51 @@ function editRide() {
                 }
             });
             removeKeyLocalstorage('rides');
-            saveToLocalStorage('rides', rides);
-            let alerts = [
-                document.getElementById('alert-rideName'),
-                document.getElementById('alert-start'),
-                document.getElementById('alert-end'),
-                document.getElementById('alert-description'),
-                document.getElementById('alert-startTime'),
-                document.getElementById('alert-endTime'),
-                document.getElementById('alert-day')
-            ];
-            clearAlert(alerts);
-            loadTableData('rides');
+            if (saveToLocalStorage('rides', rides)) {
+                let alerts = [
+                    document.getElementById('alert-rideName'),
+                    document.getElementById('alert-start'),
+                    document.getElementById('alert-end'),
+                    document.getElementById('alert-description'),
+                    document.getElementById('alert-startTime'),
+                    document.getElementById('alert-endTime'),
+                    document.getElementById('alert-day')
+                ];
+                clearAlert(alerts);
+                loadTableData('rides');
+                setAlertWindow('¡Se ha editado tu ride con exito!');
+            }
         }
     }
 }
 
+/**
+ * funcion para eliminar rides
+ * @param {*} element elemento que almacena entity y el id del ride
+ */
 function deleteRide(element) {
+    let object = $(element).data();
+    let rides = getFromLocalStorage(object.entity);
+    rides.forEach((element, index) => {
+        if (element.idRide == object.id) {
+            rides.splice(index, 1);
+        }
+    });
+    removeKeyLocalstorage('rides');
+    saveToLocalStorage('rides', orderList(rides));
+    loadTableData('rides');
+    setAlertWindow('¡Se ha borrado con exito!');
+}
 
+/**
+ * funcion que ordena el id de cada ride
+ * @param {*} rides array donde almacena todos los rides
+ */
+function orderList(rides) {
+    rides.forEach((element, index) => {
+        element.idRide = index + 1;
+    });
+    return rides;
 }
 
 /**
@@ -343,11 +370,11 @@ function renderTableIndex(tableName, tableData, start, end) {
     let rows = "";
     let table = $(`#${tableName}_table`);
     tableData.forEach(element => {
-        if (!$('#start').val().length > 0 && !$('#end').val().length > 0) {
+        if (!start.length > 0 && !end.length > 0) {
             rows += loadTableInfo(element, tableName);
         }
-        if (element.start.toLowerCase() == start.toLowerCase() 
-        || element.end.toLowerCase() == end.toLowerCase()) {
+        if (element.start.toLowerCase() == start.toLowerCase()
+            || element.end.toLowerCase() == end.toLowerCase()) {
             rows += loadTableInfo(element, tableName);
         }
     });
@@ -395,7 +422,10 @@ function loadDataRideIndex(element) {
         if (element.idRide == object.id) {
             let person = getPersonByID(element.idPerson);
             $('#name').html(person.name + ' ' + person.lastName);
-            $('#phone').html(person.phone);
+            $('#phone').html(person.phone ? person.phone : 'N/A');
+            $('#speed').html(person.speed ? person.speed : 'N/A');
+            $('#user').html(person.name);
+            $('#aboutme').html(person.aboutme ? person.aboutme : 'N/A');
             $('#ride-name').html(element.rideName);
             $('#start').html(element.start);
             $('#end').html(element.end);
@@ -406,3 +436,13 @@ function loadDataRideIndex(element) {
         }
     });
 }
+
+/**
+ * funcio que trabaja como una promesa al haber pasado tanto tiempo
+ * el recarga la pagina
+ */
+var promise1 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      resolve('foo');
+    }, 9000);
+  });
