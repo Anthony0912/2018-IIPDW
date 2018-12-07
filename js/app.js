@@ -334,6 +334,75 @@ function loadTableData(tableName) {
     renderTable(tableName, rides);
 }
 
+/**
+ * funcion que renderiza la tabla con los datos
+ * @param {*} tableName nombre de la tabla
+ * @param {*} tableData informacion que se insertara en la tabla
+ */
+function renderTableIndex(tableName, tableData, start, end) {
+    let rows = "";
+    let table = $(`#${tableName}_table`);
+    tableData.forEach(element => {
+        if (!$('#start').val().length > 0 && !$('#end').val().length > 0) {
+            rows += loadTableInfo(element, tableName);
+        }
+        if (element.start.toLowerCase() == start.toLowerCase() 
+        || element.end.toLowerCase() == end.toLowerCase()) {
+            rows += loadTableInfo(element, tableName);
+        }
+    });
+    if (rows === "") {
+        rows += `<tr><td colspan="7" class="center"><h3>No hay rides que mostrar...</h3></td></tr>`;
+    } else {
+    }
+    table.html(rows);
+}
 
+/**
+ * funcion que carga todos datos de la tabla de los rides
+ * @param {*} element elemento de la lista de rides
+ * @param {*} tableName nombre de la tabla
+ */
+function loadTableInfo(element, tableName) {
+    let person = getPersonByID(element.idPerson);
+    let row = `<tr><td>${person.name + ' ' + person.lastName}</td>
+        <td>${element.start}</td><td>${element.end}</td>
+        <td>${element.startTime}</td><td>${element.endTime}</td>`;
+    row += `<td> <a href="#modal1" class="btn btn-long waves-effect success 
+        modal-trigger" onclick="loadDataRideIndex(this)" data-id="${element.idRide}" 
+        data-entity="${tableName}" style="z-index:0;"><i class="material-icons left yellow-text">start</i>Ver</a></td>`;
+    row += '</tr>';
+    return row;
+}
 
+/**
+ * funcion que carga la tabla
+ * @param {*} tableName nombre de la tabla
+ */
+function loadTableDataIndex(tableName, start, end) {
+    const rides = getFromLocalStorage('rides');
+    renderTableIndex(tableName, rides, start, end);
+}
 
+/**
+ * funcion que carga el formulario con los datos del ride seleccionado
+ * @param {*} element elemento de la lista de rides
+ */
+function loadDataRideIndex(element) {
+    let object = $(element).data();
+    const rides = getFromLocalStorage('rides');
+    rides.forEach(element => {
+        if (element.idRide == object.id) {
+            let person = getPersonByID(element.idPerson);
+            $('#name').html(person.name + ' ' + person.lastName);
+            $('#phone').html(person.phone);
+            $('#ride-name').html(element.rideName);
+            $('#start').html(element.start);
+            $('#end').html(element.end);
+            $('#description').html(element.description);
+            $('#start-time').html(element.startTime);
+            $('#end-time').html(element.endTime);
+            loadCheckbox(element.days);
+        }
+    });
+}

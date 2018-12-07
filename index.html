@@ -14,7 +14,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./css/materialize.min.css">
-    
+
     <!-- My styles CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/materialize.min.css">
@@ -75,17 +75,17 @@
                         <div class="row">
                             <div class="input-field col s12 l6">
                                 <i class="material-icons prefix">drive_eta</i>
-                                <input id="salida" type="text" class="validate">
+                                <input id="start" type="text" class="validate search">
                                 <label for="salida">Lugar de Salida</label>
                             </div>
                             <div class="input-field col s12 l6">
                                 <i class="material-icons prefix">pin_drop</i>
-                                <input id="destino" type="text" class="validate">
+                                <input id="end" type="text" class="validate search">
                                 <label for="destino">Lugar de Destino</label>
                             </div>
                         </div>
                     </form>
-                    <table class="striped container">
+                    <table class="striped container" id="ridesIndex_table">
                         <thead>
                             <tr>
                                 <th>Usuario</th>
@@ -95,24 +95,109 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alvin</td>
-                                <td>Eclair</td>
-                                <td>$0.87</td>
-                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
-                            </tr>
-                            <tr>
-                                <td>Alan</td>
-                                <td>Jellybean</td>
-                                <td>$3.76</td>
-                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
-                            </tr>
-                            <tr>
-                                <td>Jonathan</td>
-                                <td>Lollipop</td>
-                                <td>$7.00</td>
-                                <td><a class="btn waves-effect blue btn-small"><i class="material-icons left">person</i>Ver</a></td>
-                            </tr>
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal bottom-sheet">
+                                <div class="modal-content">
+                                    <form class="col s12" name="form" id="form">
+                                        <div class="row">
+                                            <div class='input col s12'>
+                                                <label for="name" class="label-font">Nombre completo </label>
+                                                <p id="name"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input col s12">
+                                                <label for="phone" class="label-font">Telefono</label>
+                                                <p id="phone"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input col s12">
+                                                <input type="text" id="idRide" hidden>
+                                                <label for="ride-name" class="label-font">Nombre del Ride</label>
+                                                <p id="ride-name"></p>
+                                            </div>
+                                            <div class="input col s6">
+                                                <label for="start" class="label-font">Lugar de salida</label>
+                                                <p id="start"></p>
+                                            </div>
+                                            <div class="input col s6">
+                                                <label for="end" class="label-font">Lugar de destino</label>
+                                                <p id="end"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input col s12">
+                                                <label for="description" class="label-font">Descripción</label>
+                                                <p id="description"></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="header">Horarios</h4>
+                                        <br>
+                                        <div class="col s6">
+                                            <div class="row">
+                                                <div class="input col s10">
+                                                    <label for="start-time" class="label-font">Hora de salida</label>
+                                                    <p id="start-time"></p>
+                                                </div>
+                                                <div class="input col s10">
+                                                    <label for="end-time" class="label-font">Hora de llegada</label>
+                                                    <p id="end-time"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s6">
+                                            <h6 class="">Dias que se realizará el viaje</h6>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="monday" id="monday" value="Lunes" disabled/>
+                                                    <span>Lunes</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="tuesday" id="tuesday" value="Martes" disabled/>
+                                                    <span>Martes</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="wednesday" id="wednesday" disabled/>
+                                                    <span>Miercoles</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="thursday" id="thursday" disabled/>
+                                                    <span>Jueves</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="friday" id="friday" disabled/>
+                                                    <span>Viernes</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="saturday" id="saturday" disabled/>
+                                                    <span>Sábado</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input type="checkbox" name="sunday" id="sunday" disabled/>
+                                                    <span>Domingo</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                                </div>
+                            </div>
                         </tbody>
                     </table>
                 </div>
@@ -121,9 +206,9 @@
                 <div class="parallax-container">
                     <div class="section-2">
                         <h5 class="white-text">Ven ofrece rides o consigue un transporte.</h5>
-                        <a href="./signin.html" class="btn waves-effect blue btn-large"><i class="material-icons left">addperson</i>Crear
+                        <a href="./signin.html" class="btn waves-effect blue btn-large" style="z-index:0;"><i class="material-icons left">addperson</i>Crear
                             cuenta</a>
-                        <a href="./login.html" class="btn waves-effect blue btn-large"><i class="material-icons left">person</i>Iniciar
+                        <a href="./login.html" class="btn waves-effect blue btn-large" style="z-index:0;"><i class="material-icons left">person</i>Iniciar
                             session</a>
                     </div>
                     <div class="parallax"><img src="http://www.elfinanciero.com.mx/uploads/2018/04/25/8643c8e2101524706311_standard_desktop_medium_retina.png"></div>
@@ -165,6 +250,7 @@
     <script src="./js/materialize.min.js"></script>
 
     <!-- My JavaScript -->
+    <script src="./js/scroll.js"></script>
     <script src="./js/materialize.js"></script>
     <script src="./js/message.js"></script>
     <script src="./js/object.js"></script>

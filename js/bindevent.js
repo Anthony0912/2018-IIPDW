@@ -18,6 +18,9 @@ function bindEventKeyUp() {
         validationSetting();
         validationRide();
     });
+    jQuery('input.search').bind('keyup', (element) => {
+        loadTableDataIndex('ridesIndex', $('#start').val(), $('#end').val());
+    });
 }
 
 /**
@@ -54,3 +57,4 @@ bindEventClick();
 loadDataToUser();
 loadSetting();
 loadTableData('rides');
+loadTableDataIndex('ridesIndex', $('#start').val(), $('#end').val());
