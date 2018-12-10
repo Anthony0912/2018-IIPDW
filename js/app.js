@@ -369,15 +369,17 @@ function loadTableData(tableName) {
 function renderTableIndex(tableName, tableData, start, end) {
     let rows = "";
     let table = $(`#${tableName}_table`);
-    tableData.forEach(element => {
-        if (!start.length > 0 && !end.length > 0) {
-            rows += loadTableInfo(element, tableName);
-        }
-        if (element.start.toLowerCase() == start.toLowerCase()
-            || element.end.toLowerCase() == end.toLowerCase()) {
-            rows += loadTableInfo(element, tableName);
-        }
-    });
+    if (tableData) {
+        tableData.forEach(element => {
+            if (!start.length > 0 && !end.length > 0) {
+                rows += loadTableInfo(element, tableName);
+            }
+            if (element.start.toLowerCase() == start.toLowerCase()
+                || element.end.toLowerCase() == end.toLowerCase()) {
+                rows += loadTableInfo(element, tableName);
+            }
+        });
+    }
     if (rows === "") {
         rows += `<tr><td colspan="7" class="center"><h3>No hay rides que mostrar...</h3></td></tr>`;
     } else {
