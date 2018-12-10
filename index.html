@@ -85,138 +85,138 @@
                             </div>
                         </div>
                     </form>
-                    <table class="striped container" id="ridesIndex_table">
+                    <table class="striped container responsive-table col s12">
                         <thead>
                             <tr>
                                 <th>Usuario</th>
                                 <th>Inicio</th>
                                 <th>Destino</th>
-                                <th>Abrir</th>
+                                <th>Hora de salida</th>
+                                <th>Hora de llegada</th>
+                                <th>Ver</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Modal Structure -->
-                            <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
-                                <div class="modal-content">
-                                    <form class="col s12" name="form" id="form">
-                                        <h4 class="header center">Información del chofer</h4>
-                                        <div class="row">
-                                            <div class='input col s12'>
-                                                <label for="name" class="label-font">Nombre completo </label>
-                                                <p id="name"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input col s12">
-                                                <label for="phone" class="label-font">Telefono</label>
-                                                <p id="phone"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input col s12">
-                                                <label for="speed" class="label-font">Velocidad Promedio</label>
-                                                <p id="speed"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input col s12">
-                                                <label for="aboutme" class="label-font">Descripcion de <span id="user"></span></label>
-                                                <p id="aboutme"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h4 class="header center">Información del viaje</h4>
-                                        <div class="row">
-                                            <div class="input col s12">
-                                                <input type="text" id="idRide" hidden>
-                                                <label for="ride-name" class="label-font">Nombre del Ride</label>
-                                                <p id="ride-name"></p>
-                                            </div>
-                                            <div class="input col s6">
-                                                <label for="start" class="label-font">Lugar de salida</label>
-                                                <p id="start"></p>
-                                            </div>
-                                            <div class="input col s6">
-                                                <label for="end" class="label-font">Lugar de destino</label>
-                                                <p id="end"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input col s12">
-                                                <label for="description" class="label-font">Descripción</label>
-                                                <p id="description"></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h4 class="header">Horarios</h4>
-                                        <br>
-                                        <div class="col s6">
-                                            <div class="row">
-                                                <div class="input col s10">
-                                                    <label for="start-time" class="label-font">Hora de salida</label>
-                                                    <p id="start-time"></p>
-                                                </div>
-                                                <div class="input col s10">
-                                                    <label for="end-time" class="label-font">Hora de llegada</label>
-                                                    <p id="end-time"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col s6">
-                                            <h6 class="">Dias que se realizará el viaje</h6>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="monday" id="monday" value="Lunes"
-                                                        disabled />
-                                                    <span>Lunes</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="tuesday" id="tuesday" value="Martes"
-                                                        disabled />
-                                                    <span>Martes</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="wednesday" id="wednesday" disabled />
-                                                    <span>Miercoles</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="thursday" id="thursday" disabled />
-                                                    <span>Jueves</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="friday" id="friday" disabled />
-                                                    <span>Viernes</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="saturday" id="saturday" disabled />
-                                                    <span>Sábado</span>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>
-                                                    <input type="checkbox" name="sunday" id="sunday" disabled />
-                                                    <span>Domingo</span>
-                                                </label>
-                                            </p>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                                </div>
-                            </div>
+                        <tbody id="ridesIndex_table">
                         </tbody>
                     </table>
+                </div>
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal bottom-sheet modal-fixed-footer">
+                    <div class="modal-content">
+                        <form class="col s12" name="form" id="form">
+                            <h4 class="header center">Información del chofer</h4>
+                            <div class="row">
+                                <div class='input col s12'>
+                                    <label for="name" class="label-font">Nombre completo </label>
+                                    <p id="name"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input col s12">
+                                    <label for="phone" class="label-font">Telefono</label>
+                                    <p id="phone"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input col s12">
+                                    <label for="speed" class="label-font">Velocidad Promedio</label>
+                                    <p id="speed"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input col s12">
+                                    <label for="aboutme" class="label-font">Descripcion de <span id="user"></span></label>
+                                    <p id="aboutme"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4 class="header center">Información del viaje</h4>
+                            <div class="row">
+                                <div class="input col s12">
+                                    <input type="text" id="idRide" hidden>
+                                    <label for="ride-name" class="label-font">Nombre del Ride</label>
+                                    <p id="ride-name"></p>
+                                </div>
+                                <div class="input col s6">
+                                    <label for="start" class="label-font">Lugar de salida</label>
+                                    <p id="start-place"></p>
+                                </div>
+                                <div class="input col s6">
+                                    <label for="end" class="label-font">Lugar de destino</label>
+                                    <p id="end-place"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input col s12">
+                                    <label for="description" class="label-font">Descripción</label>
+                                    <p id="description"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4 class="header">Horarios</h4>
+                            <br>
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="input col s10">
+                                        <label for="start-time" class="label-font">Hora de salida</label>
+                                        <p id="start-time"></p>
+                                    </div>
+                                    <div class="input col s10">
+                                        <label for="end-time" class="label-font">Hora de llegada</label>
+                                        <p id="end-time"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <h6 class="">Dias que se realizará el viaje</h6>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="monday" id="monday" value="Lunes" disabled />
+                                        <span>Lunes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="tuesday" id="tuesday" value="Martes" disabled />
+                                        <span>Martes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="wednesday" id="wednesday" disabled />
+                                        <span>Miercoles</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="thursday" id="thursday" disabled />
+                                        <span>Jueves</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="friday" id="friday" disabled />
+                                        <span>Viernes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="saturday" id="saturday" disabled />
+                                        <span>Sábado</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="sunday" id="sunday" disabled />
+                                        <span>Domingo</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                    </div>
                 </div>
             </div>
             <div class="transparend-div center">

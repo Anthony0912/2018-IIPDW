@@ -25,8 +25,21 @@ function setAlertError(alert, messager = 'Debes llenar este campo.') {
  * funcion que muestra un ventana de noctificacion
  * @param {*} text texto de entrada
  */
-function setAlertWindow(text) {
-    M.toast({ html: text });
+function setAlertWindow(text, reload = false) {
+    if (reload) {
+        M.toast({
+            html: text,
+            displayLength: 3000,
+            completeCallback: function () {
+                location.reload(true);
+            }
+        });
+    }else{
+        M.toast({
+            html: text,
+            displayLength: 3000
+        });
+    }
 }
 
 /**

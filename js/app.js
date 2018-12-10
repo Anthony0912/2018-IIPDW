@@ -242,10 +242,10 @@ function renderTable(tableName, tableData) {
                 let row = `<tr><td>${person.name + ' ' + person.lastName}</td>
                 <td>${element.start}</td><td>${element.end}</td>
                 <td>${element.startTime}</td><td>${element.endTime}</td>`;
-                row += `<td> <a href="#modal1" class="btn waves-effect yellow darken-4 btn-long 
+                row += `<td> <a href="#modal1" class="btn btn-small waves-effect yellow darken-4  
                 modal-trigger" onclick="loadDataEditRide(this)" data-id="${element.idRide}" 
                 data-entity="${tableName}"><i class="material-icons left">edit</i>Editar</a></td>
-                    <td><a class="btn waves-effect red btn-long" onclick="deleteRide(this);" 
+                    <td><a class="btn btn-small waves-effect red" onclick="deleteRide(this);" 
                     data-id="${element.idRide}" data-entity="${tableName}">
                     <i class="material-icons left">delete</i>Eliminar</a></td>`;
                 rows += row + '</tr>';
@@ -317,7 +317,7 @@ function editRide() {
                 ];
                 clearAlert(alerts);
                 loadTableData('rides');
-                setAlertWindow('¡Se ha editado tu ride con exito!');
+                setAlertWindow('¡Se ha editado tu ride con exito!', true);
             }
         }
     }
@@ -395,7 +395,7 @@ function loadTableInfo(element, tableName) {
     let row = `<tr><td>${person.name + ' ' + person.lastName}</td>
         <td>${element.start}</td><td>${element.end}</td>
         <td>${element.startTime}</td><td>${element.endTime}</td>`;
-    row += `<td> <a href="#modal1" class="btn btn-long waves-effect success 
+    row += `<td> <a href="#modal1" class="btn btn-small waves-effect success 
         modal-trigger" onclick="loadDataRideIndex(this)" data-id="${element.idRide}" 
         data-entity="${tableName}" style="z-index:0;"><i class="material-icons left yellow-text">start</i>Ver</a></td>`;
     row += '</tr>';
@@ -423,12 +423,12 @@ function loadDataRideIndex(element) {
             let person = getPersonByID(element.idPerson);
             $('#name').html(person.name + ' ' + person.lastName);
             $('#phone').html(person.phone ? person.phone : 'N/A');
-            $('#speed').html(person.speed ? person.speed : 'N/A');
+            $('#speed').html(person.speed ? person.speed + ' KM/H' : 'N/A');
             $('#user').html(person.name);
             $('#aboutme').html(person.aboutme ? person.aboutme : 'N/A');
+            $('#start-place').html(element.start);
+            $('#end-place').html(element.end);
             $('#ride-name').html(element.rideName);
-            $('#start').html(element.start);
-            $('#end').html(element.end);
             $('#description').html(element.description);
             $('#start-time').html(element.startTime);
             $('#end-time').html(element.endTime);
@@ -441,8 +441,8 @@ function loadDataRideIndex(element) {
  * funcio que trabaja como una promesa al haber pasado tanto tiempo
  * el recarga la pagina
  */
-var promise1 = new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      resolve('foo');
+var promise1 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve('foo');
     }, 9000);
-  });
+});

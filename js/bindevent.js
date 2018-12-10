@@ -41,9 +41,6 @@ function bindEventClick() {
     });
     jQuery('#btn_updateRides').bind('click', (element) => {
         editRide();
-        promise1.then(function (value) {
-            location.reload(true);
-        });
     });
     jQuery('a.close-session').bind('click', (element) => {
         closeSession();
