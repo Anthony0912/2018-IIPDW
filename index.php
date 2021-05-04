@@ -24,9 +24,8 @@
     <div class="container-fluid">
         <nav class="black">
             <div class="nav-wrapper">
-                <a href="./index.html" class="brand-logo position-logo">
-                    <p style="font-size:20px; margin: 0px; padding: 0px;"><span class="indigo-text center">Tic</span><span
-                            class="white-text">oRi</span><span class="red-text">des</span>
+                <a href="./index.php" class="brand-logo position-logo">
+                    <p style="font-size:20px; margin: 0px; padding: 0px;"><span class="indigo-text center">Tic</span><span class="white-text">oRi</span><span class="red-text">des</span>
                         <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png" width="25px">
                     </p>
                 </a>
@@ -240,10 +239,8 @@
                     </div>
                     <div class="col l4 offset-l2 s12">
                         <div class="right">
-                            <h2 style="font-size:20px;"><span class="indigo-text center">Tic</span><span class="white-text">oRi</span><span
-                                    class="red-text">des</span></h2>
-                            <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png"
-                                width="50px">
+                            <h2 style="font-size:20px;"><span class="indigo-text center">Tic</span><span class="white-text">oRi</span><span class="red-text">des</span></h2>
+                            <img src="./img/costa-rica-890669_960_720.png" alt="./img/costa-rica-890669_960_720.png" width="50px">
                         </div>
                     </div>
                 </div>
